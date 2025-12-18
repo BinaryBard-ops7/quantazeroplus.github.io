@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Ecosystem | Quantazeroplus</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Poppins', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        display: ['Poppins', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'], 
+                    },
+                    colors: {
+                        vermaBlue: '#007bff', 
+                        vermaRed: '#dc3545',
+                        vermaDark: '#1a1a1a',
+                        vermaLight: '#f8f9fa',
+                        darkBg: '#020617', 
+                        darkCard: '#0f172a',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'blob': 'blob 7s infinite',
+                        'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'marquee': 'marquee 30s linear infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'dash-flow': 'dashFlow 2s linear infinite',
+                        'scan-line': 'scanLine 3s linear infinite',
+                    },
+                    keyframes: {
+                        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-20px)' } },
+                        blob: { "0%": { transform: "translate(0px, 0px) scale(1)" }, "33%": { transform: "translate(30px, -50px) scale(1.1)" }, "66%": { transform: "translate(-20px, 20px) scale(0.9)" }, "100%": { transform: "translate(0px, 0px) scale(1)" } },
+                        slideUp: { '0%': { transform: 'translateY(40px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
+                        marquee: { '0%': { transform: 'translateX(0%)' }, '100%': { transform: 'translateX(-50%)' } },
+                        dashFlow: { 'to': { 'stroke-dashoffset': '-20' } },
+                        scanLine: { '0%': { top: '0%' }, '50%': { top: '100%' }, '100%': { top: '0%' } }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        .dark ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+        #navbar.scrolled { width: 85%; top: 20px; border-radius: 50px; }
+        
+        .mask-marquee {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        /* NEW ADDITION: QR Pattern Background */
+        .bg-qr-pattern {
+            background-image: radial-gradient(currentColor 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+        }
+        
+        /* NEW ADDITION: Custom Matrix Corners */
+        .corner-border {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: currentColor;
+            border-style: solid;
+            transition: all 0.3s ease;
+        }
+        .corner-tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
+        .corner-tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
+        .corner-bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
+        .corner-br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
+        .group:hover .corner-border { width: 30px; height: 30px; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-gray-200 antialiased overflow-x-hidden transition-colors duration-500 min-h-screen flex flex-col">
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] max-w-7xl z-[100] transition-all duration-500" id="navbar">
+        <div class="glass border-2 border-white/30 dark:border-white/10 shadow-2xl rounded-[2rem] px-4 md:px-6 py-3 flex justify-between items-center bg-white/70 dark:bg-darkCard/60 backdrop-blur-2xl">
+            <a href="index.html" class="flex items-center gap-2 md:gap-4 group">
+                <div class="relative flex-shrink-0 w-10 h-10 md:w-12 md:h-12">
+                    <div class="absolute inset-0 bg-blue-500 blur-md opacity-20 transition-opacity rounded-xl"></div>
+                    <img src="images/logo.png" alt="Quantazeroplus" class="w-full h-full rounded-xl object-cover relative z-10 group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff&size=128'">
+                </div>
+                <span class="text-lg md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white whitespace-nowrap">Quantazeroplus</span>
+            </a>
+            <div class="hidden md:flex space-x-10 items-center font-medium text-sm text-slate-600 dark:text-gray-300">
+                <a href="index.html" class="hover:text-vermaBlue transition py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-500 hover:after:w-full after:transition-all">Home</a>
+                <a href="service.html" class="hover:text-vermaBlue transition py-1 relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5 after:bg-blue-500 hover:after:w-full after:transition-all">Start Project</a>
+                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/20 border border-slate-300 dark:border-white/10 flex items-center justify-center transition hover:scale-110 shadow-sm">
+                    <i class="fas fa-moon dark:hidden text-slate-600"></i>
+                    <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                </button>
+            </div>
+            <div class="flex items-center gap-4 md:hidden">
+                <button id="mobile-menu-btn" class="text-2xl text-slate-800 dark:text-white p-2 focus:outline-none"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden glass border-2 border-slate-200 dark:border-gray-700 mt-2 mx-auto w-full rounded-2xl shadow-2xl overflow-hidden">
+            <div class="flex flex-col p-4 space-y-3 text-center">
+                <a href="index.html" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 font-medium">Home</a>
+                <a href="service.html" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 font-medium">Start Project</a>
+                <div class="border-t pt-3">
+                    <button onclick="toggleTheme()" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-100 dark:bg-white/10 font-medium text-slate-700 dark:text-gray-200">
+                        <span>Appearance Mode</span>
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="pt-56 pb-20 px-4 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10">
+            <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-green-500/10 rounded-full blur-[140px] animate-blob"></div>
+            <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[140px] animate-blob" style="animation-delay: 3s"></div>
+            <div class="absolute inset-0 bg-qr-pattern text-slate-300 dark:text-slate-700"></div>
+        </div>
+        <div class="container mx-auto relative z-10">
+            <span class="text-green-600 dark:text-green-400 font-bold uppercase tracking-widest text-xs mb-4 block animate-slide-up">// Smart Digital Infrastructure</span>
+            <h1 class="text-5xl md:text-8xl font-serif font-extrabold text-slate-900 dark:text-white mb-8 animate-slide-up leading-tight">Interactive <br> <span class="text-green-600">QR Ecosystems</span></h1>
+            <p class="text-lg md:text-2xl text-slate-500 dark:text-gray-400 max-w-3xl mx-auto leading-relaxed animate-slide-up font-light">
+                Why use static paper when you can have an intelligent digital layer? We help Malls and Restaurants connect physical spaces to the web with glossy tech.
+            </p>
+            
+            <div class="mt-12 animate-slide-up flex justify-center">
+                <div class="relative w-24 h-24 bg-white dark:bg-darkCard rounded-2xl p-2 shadow-xl border border-white/20 group">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Quantazeroplus&color=166534" alt="QR" class="w-full h-full opacity-80 group-hover:opacity-100 transition">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-green-500 shadow-[0_0_10px_#22c55e] animate-scan-line opacity-50"></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="w-full py-12 bg-white/30 dark:bg-darkCard/20 backdrop-blur-sm border-y border-slate-200 dark:border-white/5 mask-marquee overflow-hidden mb-32">
+        <div class="flex animate-marquee whitespace-nowrap items-center gap-16">
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-check-circle text-green-500"></i> ZERO PRINTING COSTS</div>
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-bolt text-blue-500"></i> INSTANT UPDATES</div>
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-infinity text-purple-500"></i> NO MONTHLY FEES</div>
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-mobile-alt text-emerald-500"></i> BROWSER BASED</div>
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-sync text-orange-500"></i> LIVE CONTROL</div>
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-check-circle text-green-500"></i> ZERO PRINTING COSTS</div>
+            <div class="flex items-center gap-4 text-slate-400 dark:text-gray-500 font-bold uppercase tracking-tighter text-3xl"><i class="fas fa-bolt text-blue-500"></i> INSTANT UPDATES</div>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 pb-48 space-y-48">
+
+        <section class="max-w-6xl mx-auto animate-slide-up">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="glass-card p-12 rounded-[3.5rem] bg-red-500/5 dark:bg-red-900/5 border-red-500/10">
+                    <div class="w-14 h-14 bg-red-100 dark:bg-red-900/30 text-red-600 rounded-2xl flex items-center justify-center mb-8 shadow-xl shadow-red-500/10"><i class="fas fa-exclamation-triangle text-2xl"></i></div>
+                    <h3 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white font-serif">The Old Burden</h3>
+                    <p class="text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">Paper and manual systems are draining your business efficiency.</p>
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-times-circle text-red-500 mt-1 flex-shrink-0"></i>
+                            <span class="text-slate-700 dark:text-gray-300"><b>Restaurant bottleneck:</b> Staff spends hours cleaning physical menus that get worn out and look unprofessional.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-times-circle text-red-500 mt-1 flex-shrink-0"></i>
+                            <span class="text-slate-700 dark:text-gray-300"><b>Mall Disconnect:</b> Static boards are hard to read and don't provide a direct path to the store.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-times-circle text-red-500 mt-1 flex-shrink-0"></i>
+                            <span class="text-slate-700 dark:text-gray-300">Static info becomes outdated the minute prices change.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="glass-card p-12 rounded-[3.5rem] bg-green-500/5 dark:bg-green-900/5 border-green-500/20">
+                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900/30 text-green-600 rounded-2xl flex items-center justify-center mb-8 shadow-xl shadow-green-500/10"><i class="fas fa-magic text-2xl"></i></div>
+                    <h3 class="text-3xl font-bold mb-6 text-slate-900 dark:text-white font-serif">Our Modern Help</h3>
+                    <p class="text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">Quantazeroplus helps you build a permanent digital infrastructure that solves these problems forever.</p>
+                    <ul class="space-y-6 text-sm">
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-green-500 mt-1 flex-shrink-0"></i>
+                            <span class="text-slate-700 dark:text-gray-300"><b>Instant Control:</b> Change a price or a service on your portal; scanned QRs update live.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-green-500 mt-1 flex-shrink-0"></i>
+                            <span class="text-slate-700 dark:text-gray-300"><b>Consumer Freedom:</b> Shoppers and diners navigate at their own pace without waiting for staff.</span>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <i class="fas fa-check-circle text-green-500 mt-1 flex-shrink-0"></i>
+                            <span class="text-slate-700 dark:text-gray-300"><b>One-Time Asset:</b> Pay once, own it forever. No monthly subscriptions for your digital menu.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10 animate-slide-up">
+                <div class="inline-block py-1 px-4 rounded-full bg-orange-500/10 border border-orange-500/20 text-orange-600 dark:text-orange-400 text-xs font-bold uppercase tracking-widest">Efficiency Redefined</div>
+                <h2 class="text-4xl md:text-6xl font-serif font-extrabold text-slate-900 dark:text-white leading-[1.1]">The Modern <br> <span class="text-orange-500">Dining Table.</span></h2>
+                <p class="text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed">
+                    Elevate your restaurant from a manual order-taking venue to a high-speed digital establishment. Our Table QR systems allow guests to browse categories, search items, and view high-res photos without app fatigue.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="p-6 glass-card rounded-2xl group hover:border-orange-500/50 transition-all">
+                        <i class="fas fa-images text-2xl text-orange-500 mb-3"></i>
+                        <h4 class="font-bold mb-1">Visual Menus</h4>
+                        <p class="text-xs text-slate-500">Sell more by showing glossy photos of your top-selling dishes.</p>
+                    </div>
+                    <div class="p-6 glass-card rounded-2xl group hover:border-blue-500/50 transition-all">
+                        <i class="fas fa-comments text-2xl text-blue-500 mb-3"></i>
+                        <h4 class="font-bold mb-1">Kitchen-WhatsApp</h4>
+                        <p class="text-xs text-slate-500">Integrated ordering that sends selection directly to staff.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative group">
+                <div class="absolute -inset-10 bg-orange-500/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+                <div class="glass-card p-4 rounded-[3.5rem] relative z-10 shadow-2xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1550989460-0adf9ea622e2?q=80&w=1000&auto=format&fit=crop" class="w-full rounded-[2.5rem] grayscale-[0.3] group-hover:grayscale-0 transition duration-700" alt="Restaurant QR">
+                </div>
+            </div>
+        </section>
+
+        <section class="py-10">
+            <div class="text-center mb-16">
+                <span class="text-blue-500 font-mono text-sm tracking-wider uppercase">System Logic</span>
+                <h2 class="text-3xl md:text-5xl font-bold font-serif text-slate-900 dark:text-white mt-2">Operational Workflows</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+                
+                <div class="glass-card p-8 md:p-12 rounded-[3rem] relative overflow-hidden group hover:border-orange-500/30 transition-all duration-500">
+                    <div class="absolute inset-0 bg-orange-500/5 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="corner-border corner-tl text-orange-500/50"></div>
+                    <div class="corner-border corner-tr text-orange-500/50"></div>
+                    <div class="corner-border corner-bl text-orange-500/50"></div>
+                    <div class="corner-border corner-br text-orange-500/50"></div>
+
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900 dark:text-white relative z-10">
+                        <i class="fas fa-utensils text-orange-500"></i> Restaurant Logic
+                    </h3>
+                    
+                    <div class="space-y-0 relative z-10">
+                        <div class="flex gap-6 relative pb-10">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 flex items-center justify-center z-10 border border-orange-200 dark:border-orange-500/20">1</div>
+                                <div class="h-full w-0.5 bg-slate-200 dark:bg-slate-700 absolute top-10"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Guest Scan</h4>
+                                <p class="text-sm text-slate-500 mt-1">Customer sits and scans the Table QR. No app download required.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 relative pb-10">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-orange-100 dark:bg-orange-900/30 text-orange-600 flex items-center justify-center z-10 border border-orange-200 dark:border-orange-500/20">2</div>
+                                <div class="h-full w-0.5 bg-slate-200 dark:bg-slate-700 absolute top-10"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Browse & Add</h4>
+                                <p class="text-sm text-slate-500 mt-1">Full interactive menu opens. Customer adds items to cart.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 relative">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center z-10 border border-green-200 dark:border-green-500/20"><i class="fas fa-check"></i></div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Direct Dispatch</h4>
+                                <p class="text-sm text-slate-500 mt-1">Order sent via WhatsApp/API directly to the kitchen or POS.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card p-8 md:p-12 rounded-[3rem] relative overflow-hidden group hover:border-blue-500/30 transition-all duration-500">
+                    <div class="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+                    <div class="corner-border corner-tl text-blue-500/50"></div>
+                    <div class="corner-border corner-tr text-blue-500/50"></div>
+                    <div class="corner-border corner-bl text-blue-500/50"></div>
+                    <div class="corner-border corner-br text-blue-500/50"></div>
+
+                    <h3 class="text-2xl font-bold mb-8 flex items-center gap-3 text-slate-900 dark:text-white relative z-10">
+                        <i class="fas fa-map-marked-alt text-blue-500"></i> Mall Wayfinding Logic
+                    </h3>
+                    
+                    <div class="space-y-0 relative z-10">
+                        <div class="flex gap-6 relative pb-10">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center z-10 border border-blue-200 dark:border-blue-500/20">1</div>
+                                <div class="h-full w-0.5 bg-slate-200 dark:bg-slate-700 absolute top-10"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Location Entry</h4>
+                                <p class="text-sm text-slate-500 mt-1">User scans QR at entrance/lift. Browser detects "Start Point".</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-6 relative pb-10">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 text-blue-600 flex items-center justify-center z-10 border border-blue-200 dark:border-blue-500/20">2</div>
+                                <div class="h-full w-0.5 bg-slate-200 dark:bg-slate-700 absolute top-10"></div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Search & Filter</h4>
+                                <p class="text-sm text-slate-500 mt-1">User types "Nike" or "Pizza". System highlights specific floor.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-6 relative">
+                            <div class="flex flex-col items-center">
+                                <div class="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 text-green-600 flex items-center justify-center z-10 border border-green-200 dark:border-green-500/20"><i class="fas fa-location-arrow"></i></div>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Path Visualization</h4>
+                                <p class="text-sm text-slate-500 mt-1">Interactive map draws the walking path from current location to destination.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="py-20 relative overflow-hidden">
+            <div class="text-center mb-24">
+                <h2 class="text-4xl md:text-6xl font-bold font-serif mb-4 text-slate-900 dark:text-white">The Digital Journey</h2>
+                <div class="w-24 h-1.5 bg-green-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative max-w-5xl mx-auto space-y-32">
+                <div class="absolute inset-0 hidden md:flex justify-center -z-10 overflow-hidden pointer-events-none opacity-20">
+                    <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M50 0 V 100" fill="none" stroke="#22c55e" stroke-width="0.5" stroke-dasharray="10" class="animate-dash-flow" />
+                    </svg>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12 group">
+                    <div class="md:w-1/2 md:text-right">
+                        <div class="inline-flex w-16 h-16 bg-white dark:bg-darkCard rounded-[1rem] items-center justify-center shadow-2xl border-2 border-green-500/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 mb-6"><i class="fas fa-search-location text-2xl text-green-500"></i></div>
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Phase 1: Site Audit</h4>
+                        <p class="text-slate-600 dark:text-gray-400 font-light text-sm leading-relaxed">We map out "Interaction Points" where customers naturally pause—elevators, reception, or tables—to ensure 100% engagement.</p>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row-reverse items-center gap-12 group">
+                    <div class="md:w-1/2 md:text-left">
+                        <div class="inline-flex w-16 h-16 bg-white dark:bg-darkCard rounded-[1rem] items-center justify-center shadow-2xl border-2 border-blue-500/20 group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 mb-6"><i class="fas fa-code text-2xl text-blue-500"></i></div>
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Phase 2: Glossy UI Build</h4>
+                        <p class="text-slate-600 dark:text-gray-400 font-light text-sm leading-relaxed">Developers build your custom, semi-dynamic portal. It opens instantly in the browser with a high-end luxury app feel.</p>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+
+                <div class="flex flex-col md:flex-row items-center gap-12 group">
+                    <div class="md:w-1/2 md:text-right">
+                        <div class="inline-flex w-16 h-16 bg-white dark:bg-darkCard rounded-[1rem] items-center justify-center shadow-2xl border-2 border-orange-500/20 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 mb-6"><i class="fas fa-rocket text-2xl text-orange-500"></i></div>
+                        <h4 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Phase 3: Live Ecosystem</h4>
+                        <p class="text-slate-600 dark:text-gray-400 font-light text-sm leading-relaxed">You receive premium QR plaques. You manage everything from a simple dashboard—updates reflect live instantly across the venue.</p>
+                    </div>
+                    <div class="md:w-1/2"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="flex flex-col lg:flex-row-reverse items-center gap-20">
+            <div class="lg:w-1/2 space-y-10 animate-slide-up">
+                <div class="inline-block py-1 px-4 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-widest">Complex Venue Logic</div>
+                <h2 class="text-4xl md:text-6xl font-serif font-extrabold text-slate-900 dark:text-white leading-[1.1]">Malls: Navigating <br> <span class="text-blue-600">The Discovery.</span></h2>
+                <p class="text-xl text-slate-600 dark:text-gray-400 font-light leading-relaxed">
+                    Shoppers often get frustrated navigating multi-floor complexes. Our <b>Interactive Wayfinding Ecosystem</b> provides a floor-by-floor interactive directory directly on the consumer's phone.
+                </p>
+                <div class="p-8 rounded-[2rem] bg-blue-500/5 dark:bg-blue-900/10 border border-blue-500/10">
+                    <h5 class="font-bold text-blue-600 mb-2 italic">The Consumer Path:</h5>
+                    <p class="text-sm text-slate-500 italic">"I scanned near the lift, found the paths to all stores and the washrooms instantly. Saved 15 minutes of wandering."</p>
+                </div>
+            </div>
+            <div class="lg:w-1/2 relative group">
+                <div class="absolute -inset-10 bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow"></div>
+                <div class="glass-card p-4 rounded-[3.5rem] relative z-10 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=1000&auto=format&fit=crop" class="w-full rounded-[2.5rem]" alt="Mall QR Navigator">
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center py-24 bg-gradient-to-br from-green-600 to-emerald-800 dark:from-green-700 dark:to-emerald-900 rounded-[4.5rem] text-white overflow-hidden relative shadow-2xl">
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+            <div class="relative z-10 px-8">
+                <h2 class="text-4xl md:text-7xl font-bold font-serif mb-8">Move from Static <br> to Smart.</h2>
+                <p class="text-green-100 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light opacity-80">Join the list of businesses saving thousands in re-printing costs today.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-8">
+                    <a href="service.html" class="bg-white text-green-600 px-12 py-5 rounded-[2rem] font-bold hover:scale-105 transition-all shadow-xl text-lg flex items-center justify-center gap-2">Start Project <i class="fas fa-rocket"></i></a>
+                    <a href="mailto:quantazeroplus6022@gmail.com" class="bg-green-900/40 border border-white/30 px-12 py-5 rounded-[2rem] font-bold hover:bg-green-900/60 transition-all text-lg backdrop-blur-md">Contact Lead Developer</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact" class="bg-slate-900 dark:bg-[#010409] text-gray-400 pt-16 pb-8 border-t border-slate-800 dark:border-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="images/logo.png" class="w-10 h-10 rounded-lg shadow-lg" alt="Logo" onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff'">
+                        <span class="text-xl font-bold text-white uppercase tracking-tighter">QUANTAZEROPLUS</span>
+                    </div>
+                    <p class="text-sm leading-relaxed mb-6">Democratizing the web with affordable, high-impact digital solutions for everyone. Since 2023.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Quick Links</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="index.html" class="hover:text-blue-400 transition">Mission</a></li>
+                        <li><a href="index.html#services" class="hover:text-blue-400 transition">Work</a></li>
+                        <li><a href="service.html" class="hover:text-blue-400 transition">Start Project</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Solutions</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Shopkeeper Sites</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Hotel QR Portals</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Student Web Resumes</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Connect with Us</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-map-marker-alt text-red-500 mt-1"></i>
+                            <span>Mumbai, India<br>Serving Globally</span>
+                        </li>
+                        <li>
+                            <div class="flex gap-4 mt-4">
+                                <a href="https://wa.me/919341478114" target="_blank" class="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fab fa-whatsapp text-2xl"></i></a>
+                                <a href="tel:919341478114" class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fas fa-phone-alt text-xl"></i></a>
+                                <a href="mailto:quantazeroplus6022@gmail.com" class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white hover:scale-110 transition-transform"><i class="fas fa-envelope text-xl"></i></a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 dark:border-gray-900 pt-8 text-center text-xs relative flex justify-center items-center">
+                <p>&copy; 2023-2025 Quantazeroplus. All rights reserved.</p>
+                <button onclick="window.location.href='index.html#contact'" class="absolute right-4 bottom-8 text-gray-600 opacity-50 hover:opacity-100 transition-opacity" title="Admin">
+                    <i class="fas fa-lock text-xs"></i>
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            html.classList.toggle('dark');
+            localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+        }
+        window.onscroll = function() {
+            const nav = document.getElementById('navbar');
+            if (nav) {
+                if (window.pageYOffset > 50) nav.classList.add('scrolled');
+                else nav.classList.remove('scrolled');
+            }
+        };
+        document.getElementById('mobile-menu-btn').onclick = () => document.getElementById('mobile-menu').classList.toggle('hidden');
+    </script>
+</body>
+</html>
