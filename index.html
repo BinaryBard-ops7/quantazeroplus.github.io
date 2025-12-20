@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/logo.png">
     <title>Quantazeroplus | Digital Solutions</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
-            darkMode: 'class', 
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { 
+                    fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                         display: ['Poppins', 'sans-serif'],
-                        serif: ['Cinzel', 'serif'], 
+                        serif: ['Cinzel', 'serif'],
                     },
                     colors: {
-                        vermaBlue: '#007bff', 
+                        vermaBlue: '#007bff',
                         vermaRed: '#dc3545',
                         vermaDark: '#1a1a1a',
                         vermaLight: '#f8f9fa',
-                        darkBg: '#020617', 
+                        darkBg: '#020617',
                         darkCard: '#0f172a',
                     },
                     animation: {
@@ -59,94 +62,356 @@
 
     <style>
         /* SCROLLBAR & UTILITIES */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        .dark ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #334155; }
-        ::-webkit-scrollbar-thumb:hover { background: #007bff; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #007bff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* GLASS EFFECTS */
-        .glass { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.3); }
-        .dark .glass { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .dark .glass-card { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
-        .glass-card:hover { transform: translateY(-10px) scale(1.02); background: rgba(255, 255, 255, 0.9); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
-        .dark .glass-card:hover { background: rgba(15, 23, 42, 0.6); border-color: rgba(0, 123, 255, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 123, 255, 0.2); }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-        .glass-base { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
-        .dark .glass-base { background: rgba(2, 6, 23, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
-        
-        .card-glow:hover { transform: translateY(-8px); }
-        .dark .card-glow:hover { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 197, 94, 0.1); border-color: rgba(34, 197, 94, 0.3); }
-        
-        /* 3D Cards */
-        .card-3d { transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s; transform-style: preserve-3d; perspective: 1000px; }
-        .card-3d:hover { transform: translateY(-8px) rotateX(5deg) rotateY(-2deg); box-shadow: 0 15px 35px rgba(0,0,0,0.1), 0 5px 15px rgba(0,0,0,0.05); z-index: 10; }
-        .dark .card-3d:hover { box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 15px rgba(59, 130, 246, 0.2); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
 
-        /* Typography & Buttons */
-        .typewriter-effect { display: inline-block; overflow: hidden; border-right: 4px solid #007bff; white-space: nowrap; margin: 0; width: 0; animation: typing 2.5s steps(20, end) forwards, blink-cursor .75s step-end infinite; }
-        @keyframes typing { from { width: 0 } to { width: 100% } }
-        @keyframes blink-cursor { from, to { border-color: transparent } 50% { border-color: inherit; } }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
 
-        .tech-btn { position: relative; padding: 16px 36px; background: rgba(0, 123, 255, 0.1); border: 1px solid rgba(0, 123, 255, 0.2); cursor: pointer; z-index: 1; clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px); color: #007bff; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; backdrop-filter: blur(4px); }
-        .dark .tech-btn { background: rgba(0, 40, 104, 0.2); border: 1px solid rgba(255,255,255,0.1); color: #60a5fa; }
-        .tech-btn::before { content: ''; position: absolute; width: 0; height: 100%; background-color: #007bff; left: 50%; top: 50%; transform: translate(-50%, -50%); transition: width 0.4s ease; z-index: -1; }
-        .dark .tech-btn::before { background-color: #002868; }
-        .tech-btn:hover::before { width: 100%; }
-        .tech-btn:hover { color: white; border-color: transparent; }
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
 
-        /* Gallery */
-        .gallery-container { column-count: 2; column-gap: 1rem; }
-        @media (min-width: 768px) { .gallery-container { column-count: 3; } }
-        @media (min-width: 1024px) { .gallery-container { column-count: 4; } }
-        .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); background: #f8fafc; transition: all 0.5s ease; }
-        .dark .gallery-item { background: #1e293b; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3); }
-        .gallery-item:hover { transform: scale(1.02); z-index: 10; }
-        .gallery-item img { width: 100%; height: auto; display: block; }
-        .delete-btn { position: absolute; top: 10px; right: 10px; z-index: 50; background: rgba(220, 53, 69, 1); color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.5); transition: all 0.2s ease; border: 2px solid white; }
-        .delete-btn:hover { transform: scale(1.1) rotate(90deg); background: #ff0000; }
+        .dark .glass-card:hover {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: rgba(0, 123, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 123, 255, 0.2);
+        }
 
-        /* Navbar & Misc */
-        #navbar.scrolled { width: 85%; top: 20px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        .slide-card { scroll-snap-align: center; }
-        .audience-img-container { position: relative; width: 100%; height: 180px; overflow: hidden; border-radius: 2rem 2rem 0 0; }
-        .audience-img-container::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 70%; background: linear-gradient(to bottom, transparent, #ffffff); }
-        .dark .audience-img-container::after { background: linear-gradient(to bottom, transparent, #0f172a); }
-        #subGridWrapper { display: none; }
-        #subGridWrapper.show { display: block !important; animation: fadeIn 0.5s ease-out forwards; }
-
-        /* NEW: Futuristic Frame Styles */
-        .future-frame { 
-            border-radius: 1.5rem; 
-            overflow: hidden; 
-            box-shadow: 0 20px 50px -12px rgba(0, 123, 255, 0.25); 
-            border: 1px solid rgba(255,255,255,0.2); 
-            display: flex; 
-            flex-direction: column; 
-            position: relative;
-            background: transparent; /* Changed from darkBG to allow blur effect */
+        .glass-base {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
         }
+
+        .dark .glass-base {
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-glow:hover {
+            transform: translateY(-8px);
+        }
+
+        .dark .card-glow:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(34, 197, 94, 0.1);
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        /* 3D Cards */
+        .card-3d {
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .card-3d:hover {
+            transform: translateY(-8px) rotateX(5deg) rotateY(-2deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+
+        .dark .card-3d:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 15px rgba(59, 130, 246, 0.2);
+        }
+
+        /* Typography & Buttons */
+        .typewriter-effect {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 4px solid #007bff;
+            white-space: nowrap;
+            margin: 0;
+            width: 0;
+            animation: typing 2.5s steps(20, end) forwards, blink-cursor .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink-cursor {
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: inherit;
+            }
+        }
+
+        .tech-btn {
+            position: relative;
+            padding: 16px 36px;
+            background: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            cursor: pointer;
+            z-index: 1;
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            color: #007bff;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .dark .tech-btn {
+            background: rgba(0, 40, 104, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #60a5fa;
+        }
+
+        .tech-btn::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 100%;
+            background-color: #007bff;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.4s ease;
+            z-index: -1;
+        }
+
+        .dark .tech-btn::before {
+            background-color: #002868;
+        }
+
+        .tech-btn:hover::before {
+            width: 100%;
+        }
+
+        .tech-btn:hover {
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-container {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-container {
+                column-count: 4;
+            }
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #f8fafc;
+            transition: all 0.5s ease;
+        }
+
+        .dark .gallery-item {
+            background: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 50;
+            background: rgba(220, 53, 69, 1);
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            transition: all 0.2s ease;
+            border: 2px solid white;
+        }
+
+        .delete-btn:hover {
+            transform: scale(1.1) rotate(90deg);
+            background: #ff0000;
+        }
+
+        /* Navbar & Misc */
+        #navbar.scrolled {
+            width: 85%;
+            top: 20px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .slide-card {
+            scroll-snap-align: center;
+        }
+
+        .audience-img-container {
+            position: relative;
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+            border-radius: 2rem 2rem 0 0;
+        }
+
+        .audience-img-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to bottom, transparent, #ffffff);
+        }
+
+        .dark .audience-img-container::after {
+            background: linear-gradient(to bottom, transparent, #0f172a);
+        }
+
+        #subGridWrapper {
+            display: none;
+        }
+
+        #subGridWrapper.show {
+            display: block !important;
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* NEW: Futuristic Frame Styles */
+        .future-frame {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -12px rgba(0, 123, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: transparent;
+            /* Changed from darkBG to allow blur effect */
+            transition: all 0.3s ease;
+        }
+
         .future-frame:hover {
             box-shadow: 0 25px 60px -12px rgba(0, 123, 255, 0.4);
-            border-color: rgba(255,255,255,0.3);
+            border-color: rgba(255, 255, 255, 0.3);
         }
+
         .future-frame::before {
             content: '';
             position: absolute;
             inset: 0;
             pointer-events: none;
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2);
             z-index: 20;
             border-radius: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* CAROUSEL ANIMATIONS */
@@ -155,12 +420,13 @@
             z-index: 10;
             transition: opacity 1s ease-in-out;
         }
+
         .carousel-enhanced-inactive {
             opacity: 0;
             z-index: 0;
             transition: opacity 1s ease-in-out;
         }
-        
+
         /* AUDIO VISUALIZER & PRESENTATION */
         .v-bar {
             width: 4px;
@@ -170,29 +436,68 @@
             transition: height 0.1s ease, opacity 0.3s ease;
             opacity: 0.3;
         }
+
         .dark .v-bar {
             background: linear-gradient(to top, #60a5fa, #c084fc);
         }
-        
+
         /* Animation applied only when .is-playing class is present on container */
         .is-playing .v-bar {
             animation: audioWave 1s ease-in-out infinite;
             opacity: 1;
         }
-        
+
         /* Staggered animation delays for wave effect */
-        .is-playing .v-bar:nth-child(1) { animation-duration: 0.8s; animation-delay: 0s; }
-        .is-playing .v-bar:nth-child(2) { animation-duration: 1.1s; animation-delay: 0.1s; }
-        .is-playing .v-bar:nth-child(3) { animation-duration: 0.9s; animation-delay: 0.2s; }
-        .is-playing .v-bar:nth-child(4) { animation-duration: 1.2s; animation-delay: 0.3s; }
-        .is-playing .v-bar:nth-child(5) { animation-duration: 0.7s; animation-delay: 0.1s; }
-        .is-playing .v-bar:nth-child(6) { animation-duration: 1.0s; animation-delay: 0.2s; }
-        .is-playing .v-bar:nth-child(7) { animation-duration: 0.8s; animation-delay: 0.3s; }
-        .is-playing .v-bar:nth-child(8) { animation-duration: 1.3s; animation-delay: 0s; }
+        .is-playing .v-bar:nth-child(1) {
+            animation-duration: 0.8s;
+            animation-delay: 0s;
+        }
+
+        .is-playing .v-bar:nth-child(2) {
+            animation-duration: 1.1s;
+            animation-delay: 0.1s;
+        }
+
+        .is-playing .v-bar:nth-child(3) {
+            animation-duration: 0.9s;
+            animation-delay: 0.2s;
+        }
+
+        .is-playing .v-bar:nth-child(4) {
+            animation-duration: 1.2s;
+            animation-delay: 0.3s;
+        }
+
+        .is-playing .v-bar:nth-child(5) {
+            animation-duration: 0.7s;
+            animation-delay: 0.1s;
+        }
+
+        .is-playing .v-bar:nth-child(6) {
+            animation-duration: 1.0s;
+            animation-delay: 0.2s;
+        }
+
+        .is-playing .v-bar:nth-child(7) {
+            animation-duration: 0.8s;
+            animation-delay: 0.3s;
+        }
+
+        .is-playing .v-bar:nth-child(8) {
+            animation-duration: 1.3s;
+            animation-delay: 0s;
+        }
 
         @keyframes audioWave {
-            0%, 100% { height: 15%; }
-            50% { height: 80%; }
+
+            0%,
+            100% {
+                height: 15%;
+            }
+
+            50% {
+                height: 80%;
+            }
         }
 
         /* Glow Effect - Active only when playing */
@@ -200,6 +505,7 @@
             opacity: 0;
             transition: opacity 1s ease;
         }
+
         .is-playing .audio-glow {
             opacity: 1;
             animation: pulse-slow 3s infinite;
@@ -210,67 +516,98 @@
             background-color: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
         }
+
         .dark audio::-webkit-media-controls-panel {
             background-color: rgba(15, 23, 42, 0.8);
             backdrop-filter: blur(10px);
         }
+
         audio::-webkit-media-controls-current-time-display,
         audio::-webkit-media-controls-time-remaining-display {
             color: #334155;
             font-size: 11px;
             font-weight: 600;
         }
+
         .dark audio::-webkit-media-controls-current-time-display,
         .dark audio::-webkit-media-controls-time-remaining-display {
             color: #cbd5e1;
         }
-        
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-gray-200 antialiased overflow-x-hidden transition-colors duration-500 min-h-screen">
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] max-w-7xl z-[100] transition-all duration-500" id="navbar">
-        <div class="glass border-2 border-white/30 dark:border-white/10 shadow-2xl rounded-[2rem] px-4 md:px-6 py-3 flex justify-between items-center bg-white/70 dark:bg-slate-900/60 backdrop-blur-2xl">
+<body
+    class="bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-gray-200 antialiased overflow-x-hidden transition-colors duration-500 min-h-screen">
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] max-w-7xl z-[100] transition-all duration-500"
+        id="navbar">
+        <div
+            class="glass border-2 border-white/30 dark:border-white/10 shadow-2xl rounded-[2rem] px-4 md:px-6 py-3 flex justify-between items-center bg-white/70 dark:bg-slate-900/60 backdrop-blur-2xl">
             <a href="#" class="flex items-center gap-2 md:gap-4 group">
                 <div class="relative flex-shrink-0 w-10 h-10 md:w-12 md:h-12">
-                    <div class="absolute inset-0 bg-blue-500 blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-xl"></div>
-                    <img src="images/logo.png" alt="Quantazeroplus" class="w-full h-full rounded-xl object-cover relative z-10 group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff&size=128'">
+                    <div
+                        class="absolute inset-0 bg-blue-500 blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-xl">
+                    </div>
+                    <img src="images/logo.png" alt="Quantazeroplus"
+                        class="w-full h-full rounded-xl object-cover relative z-10 group-hover:scale-110 transition-transform duration-300"
+                        onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff&size=128'">
                 </div>
-                <span class="text-lg md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 dark:group-hover:from-blue-400 dark:group-hover:to-cyan-300 transition-all duration-300 whitespace-nowrap">
+                <span
+                    class="text-lg md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 dark:group-hover:from-blue-400 dark:group-hover:to-cyan-300 transition-all duration-300 whitespace-nowrap">
                     Quantazeroplus
                 </span>
             </a>
 
             <div class="hidden md:flex space-x-10 items-center font-medium text-sm">
-                <a href="#home" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Mission</a>
-                <a href="#solution" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Solution</a>
-                <a href="#services" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Work</a>
-                <a href="#contact" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Contact</a>
-                <a href="about.html" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">About Us</a>
-                
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/20 backdrop-blur-md border border-slate-300 dark:border-white/10 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:scale-110 shadow-sm hover:bg-slate-300 dark:hover:bg-white/40">
+                <a href="#home"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Mission</a>
+                <a href="#solution"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Solution</a>
+                <a href="#services"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Work</a>
+                <a href="#contact"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">Contact</a>
+                <a href="about.html"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">About
+                    Us</a>
+
+                <button onclick="toggleTheme()"
+                    class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/20 backdrop-blur-md border border-slate-300 dark:border-white/10 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:scale-110 shadow-sm hover:bg-slate-300 dark:hover:bg-white/40">
                     <i class="fas fa-moon dark:hidden"></i>
                     <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
                 </button>
             </div>
 
             <div class="flex items-center gap-4 md:hidden">
-                <button id="mobile-menu-btn" class="text-2xl text-slate-800 dark:text-white focus:outline-none p-2 active:scale-90 transition-transform">
+                <button id="mobile-menu-btn"
+                    class="text-2xl text-slate-800 dark:text-white focus:outline-none p-2 active:scale-90 transition-transform">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden glass border-2 border-slate-200 dark:border-gray-700 mt-2 mx-auto w-full rounded-2xl shadow-2xl transform origin-top transition-all duration-300 overflow-hidden">
+        <div id="mobile-menu"
+            class="hidden md:hidden glass border-2 border-slate-200 dark:border-gray-700 mt-2 mx-auto w-full rounded-2xl shadow-2xl transform origin-top transition-all duration-300 overflow-hidden">
             <div class="flex flex-col p-4 space-y-3">
-                <a href="#home" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium" onclick="toggleMenu()">Mission</a>
-                <a href="#solution" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium" onclick="toggleMenu()">Solution</a>
-                <a href="#services" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium" onclick="toggleMenu()">Work</a>
-                <a href="#contact" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium" onclick="toggleMenu()">Contact</a>
-                <a href="about.html" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium" onclick="toggleMenu()">About Us</a>
-                
+                <a href="#home"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium"
+                    onclick="toggleMenu()">Mission</a>
+                <a href="#solution"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium"
+                    onclick="toggleMenu()">Solution</a>
+                <a href="#services"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium"
+                    onclick="toggleMenu()">Work</a>
+                <a href="#contact"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium"
+                    onclick="toggleMenu()">Contact</a>
+                <a href="about.html"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium"
+                    onclick="toggleMenu()">About Us</a>
+
                 <div class="border-t border-slate-200 dark:border-gray-700 pt-3">
-                    <button onclick="toggleTheme()" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">
+                    <button onclick="toggleTheme()"
+                        class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">
                         <span>Appearance Mode</span>
                         <span>
                             <i class="fas fa-moon dark:hidden text-slate-500"></i>
@@ -283,69 +620,98 @@
     </nav>
 
     <section id="home" class="min-h-screen pt-32 pb-16 px-4 flex items-center overflow-hidden relative">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-slate-50 dark:bg-[#020617] transition-colors duration-500">
-            <div class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-blue-200/40 dark:bg-blue-900/20 rounded-full blur-[120px] animate-blob"></div>
-            <div class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-purple-200/40 dark:bg-indigo-900/20 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
-            <div class="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-cyan-200/30 dark:bg-slate-800/20 rounded-full blur-[100px] animate-pulse-slow"></div>
-            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 dark:opacity-20"></div>
+        <div
+            class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-slate-50 dark:bg-[#020617] transition-colors duration-500">
+            <div
+                class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-blue-200/40 dark:bg-blue-900/20 rounded-full blur-[120px] animate-blob">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-purple-200/40 dark:bg-indigo-900/20 rounded-full blur-[120px] animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute top-[40%] left-[30%] w-[40%] h-[40%] bg-cyan-200/30 dark:bg-slate-800/20 rounded-full blur-[100px] animate-pulse-slow">
+            </div>
+            <div
+                class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 dark:opacity-20">
+            </div>
         </div>
 
         <div class="container mx-auto flex flex-col md:flex-row items-center gap-12 relative z-10">
             <div class="md:w-1/2 animate-slide-up text-center md:text-left relative">
                 <div class="relative z-10">
-                    <div class="inline-flex items-center gap-2 glass px-5 py-2 rounded-full text-xs font-bold mb-8 shadow-lg border border-slate-200 dark:border-white/10">
+                    <div
+                        class="inline-flex items-center gap-2 glass px-5 py-2 rounded-full text-xs font-bold mb-8 shadow-lg border border-slate-200 dark:border-white/10">
                         <span class="relative flex h-3 w-3">
-                          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-                          <span class="relative inline-flex rounded-full h-3 w-3 bg-green-600 dark:bg-green-500 dark:shadow-[0_0_10px_#22c55e]"></span>
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                            <span
+                                class="relative inline-flex rounded-full h-3 w-3 bg-green-600 dark:bg-green-500 dark:shadow-[0_0_10px_#22c55e]"></span>
                         </span>
-                        <span class="tracking-widest uppercase font-mono text-slate-600 dark:text-gray-300">Live • Systems Online</span>
+                        <span class="tracking-widest uppercase font-mono text-slate-600 dark:text-gray-300">Live •
+                            Systems Online</span>
                     </div>
-                    
-                    <h1 class="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight relative font-serif">
-                        <span class="block text-lg md:text-xl font-mono text-vermaBlue dark:text-blue-400 mb-2 font-medium tracking-widest uppercase opacity-90">
+
+                    <h1
+                        class="text-5xl md:text-7xl font-extrabold text-slate-900 dark:text-white mb-6 leading-tight tracking-tight relative font-serif">
+                        <span
+                            class="block text-lg md:text-xl font-mono text-vermaBlue dark:text-blue-400 mb-2 font-medium tracking-widest uppercase opacity-90">
                             // Web_Democratized_
                         </span>
                         Power to Your <br>
                         <div class="inline-block relative mt-2 mb-2 align-middle">
-                            <span class="typewriter-effect font-sans text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-white dark:to-red-400 pb-1">
+                            <span
+                                class="typewriter-effect font-sans text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-white dark:to-red-400 pb-1">
                                 Digital Voice.
                             </span>
                         </div>
                         <br>
-                        <span class="text-3xl md:text-4xl font-light text-slate-500 dark:text-gray-400 flex items-center justify-center md:justify-start gap-3 mt-4 font-sans">
+                        <span
+                            class="text-3xl md:text-4xl font-light text-slate-500 dark:text-gray-400 flex items-center justify-center md:justify-start gap-3 mt-4 font-sans">
                             is <span class="font-bold text-slate-900 dark:text-white relative inline-block">
                                 Built Here
-                                <svg class="absolute -bottom-2 left-0 w-full h-3 text-vermaBlue dark:text-blue-500" viewBox="0 0 100 10" preserveAspectRatio="none">
-                                    <path d="M0 5 Q 50 15 100 5" stroke="currentColor" stroke-width="3" fill="none" class="animate-pulse" />
+                                <svg class="absolute -bottom-2 left-0 w-full h-3 text-vermaBlue dark:text-blue-500"
+                                    viewBox="0 0 100 10" preserveAspectRatio="none">
+                                    <path d="M0 5 Q 50 15 100 5" stroke="currentColor" stroke-width="3" fill="none"
+                                        class="animate-pulse" />
                                 </svg>
                             </span>
                         </span>
                     </h1>
-                    
-                    <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400">
-                        <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-default shadow-sm">
+
+                    <div
+                        class="flex flex-wrap justify-center md:justify-start gap-4 mb-8 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400">
+                        <div
+                            class="flex items-center gap-2 px-3 py-1 rounded-md bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-blue-500 dark:hover:text-blue-400 transition-colors cursor-default shadow-sm">
                             <i class="fas fa-shield-alt text-blue-500"></i> Security
                         </div>
-                        <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-green-500 dark:hover:text-green-400 transition-colors cursor-default shadow-sm">
+                        <div
+                            class="flex items-center gap-2 px-3 py-1 rounded-md bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-green-500 dark:hover:text-green-400 transition-colors cursor-default shadow-sm">
                             <i class="fas fa-bullseye text-green-500"></i> Accuracy
                         </div>
-                        <div class="flex items-center gap-2 px-3 py-1 rounded-md bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-red-500 dark:hover:text-red-400 transition-colors cursor-default shadow-sm">
+                        <div
+                            class="flex items-center gap-2 px-3 py-1 rounded-md bg-white/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 hover:text-red-500 dark:hover:text-red-400 transition-colors cursor-default shadow-sm">
                             <i class="fas fa-tags text-red-500"></i> Affordability
                         </div>
                     </div>
-                    
-                    <p class="text-lg text-slate-600 dark:text-gray-400 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
-                        Specializing in high-performance <b class="font-bold text-slate-900 dark:text-white">Web Development</b> and complete <b class="font-bold text-slate-900 dark:text-white">QR Ecosystems</b>. We deliver maintenance-free assets at local rates.
+
+                    <p
+                        class="text-lg text-slate-600 dark:text-gray-400 mb-8 max-w-lg mx-auto md:mx-0 leading-relaxed font-light">
+                        Specializing in high-performance <b class="font-bold text-slate-900 dark:text-white">Web
+                            Development</b> and complete <b class="font-bold text-slate-900 dark:text-white">QR
+                            Ecosystems</b>. We deliver maintenance-free assets at local rates.
                     </p>
-                    
+
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                        <a href="service.html" class="bg-gradient-to-r from-vermaBlue to-blue-700 dark:from-blue-700 dark:to-indigo-800 text-white px-8 py-4 rounded-xl text-center font-bold hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(0,40,104,0.6)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 border border-blue-400/30 dark:border-blue-500/30 relative overflow-hidden group">
-                            <span class="absolute inset-0 bg-white/20 dark:bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></span>
+                        <a href="service.html"
+                            class="bg-gradient-to-r from-vermaBlue to-blue-700 dark:from-blue-700 dark:to-indigo-800 text-white px-8 py-4 rounded-xl text-center font-bold hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(0,40,104,0.6)] transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 border border-blue-400/30 dark:border-blue-500/30 relative overflow-hidden group">
+                            <span
+                                class="absolute inset-0 bg-white/20 dark:bg-white/10 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500"></span>
                             <span>Start Journey</span> <i class="fas fa-rocket"></i>
                         </a>
-                        
-                        <a href="#services" class="tech-btn group glass !bg-white/50 dark:!bg-white/5 !border-slate-200 dark:!border-white/10 !text-slate-700 dark:!text-gray-300">
-                            <span>My Work</span> 
+
+                        <a href="#services"
+                            class="tech-btn group glass !bg-white/50 dark:!bg-white/5 !border-slate-200 dark:!border-white/10 !text-slate-700 dark:!text-gray-300">
+                            <span>My Work</span>
                             <i class="fas fa-chevron-down group-hover:translate-y-1 transition-transform"></i>
                         </a>
                     </div>
@@ -353,45 +719,68 @@
             </div>
 
             <div class="md:w-1/2 flex flex-col items-center justify-center relative w-full">
-                
+
                 <div class="relative w-full max-w-lg grid grid-cols-2 gap-4 animate-float mb-12 z-20">
-                    <div class="glass-card p-6 rounded-2xl transform translate-y-8 hover:-translate-y-2 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/40">
-                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
-                            <i class="fas fa-code"></i>
+                    <a href="web.html">
+                        <div
+                            class="glass-card p-6 rounded-2xl transform translate-y-8 hover:-translate-y-2 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-blue-400 dark:hover:border-blue-500 hover:shadow-2xl hover:shadow-blue-500/40">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3
+                                class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">
+                                Web Dev</h3>
+                            <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Semi-Dynamic webapp & Landings</p>
                         </div>
-                        <h3 class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-blue-600 dark:group-hover:text-blue-400">Web Dev</h3>
-                        <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Semi-Dynamic webapp & Landings</p>
-                    </div>
+                    </a>
 
                     <a href="qr.html">
-                        <div class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-green-400 dark:hover:border-green-500 hover:shadow-2xl hover:shadow-green-500/40">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
+                        <div
+                            class="glass-card p-6 rounded-2xl hover:-translate-y-2 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-green-400 dark:hover:border-green-500 hover:shadow-2xl hover:shadow-green-500/40">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
                                 <i class="fas fa-qrcode"></i>
                             </div>
-                            <h3 class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-green-600 dark:group-hover:text-green-400">QR Ecosystem</h3>
+                            <h3
+                                class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-green-600 dark:group-hover:text-green-400">
+                                QR Ecosystem</h3>
                             <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Hotel & Restaurant Solutions</p>
                         </div>
                     </a>
 
-                    <div class="glass-card p-6 rounded-2xl transform translate-y-4 hover:-translate-y-2 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/40">
-                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
+                    <div
+                        class="glass-card p-6 rounded-2xl transform translate-y-4 hover:-translate-y-2 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-purple-400 dark:hover:border-purple-500 hover:shadow-2xl hover:shadow-purple-500/40">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-purple-500 to-fuchsia-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
                             <i class="fas fa-palette"></i>
                         </div>
-                        <h3 class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-purple-600 dark:group-hover:text-purple-400">Brand UI</h3>
+                        <h3
+                            class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-purple-600 dark:group-hover:text-purple-400">
+                            Brand UI</h3>
                         <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Glossy & Modern Identity</p>
                     </div>
 
-                    <div class="glass-card p-6 rounded-2xl transform -translate-y-4 hover:-translate-y-6 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-orange-400 dark:hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/40">
-                        <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
+                    <div
+                        class="glass-card p-6 rounded-2xl transform -translate-y-4 hover:-translate-y-6 transition-all duration-300 group border border-slate-100 dark:border-white/5 hover:border-orange-400 dark:hover:border-orange-500 hover:shadow-2xl hover:shadow-orange-500/40">
+                        <div
+                            class="w-12 h-12 bg-gradient-to-br from-red-500 to-pink-600 rounded-xl flex items-center justify-center text-white text-2xl mb-3 group-hover:scale-110 transition-transform group-hover:rotate-12">
                             <i class="fas fa-user-graduate"></i>
                         </div>
-                        <h3 class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-orange-600 dark:group-hover:text-orange-400">Student Portfolio</h3>
+                        <h3
+                            class="font-bold text-lg text-slate-900 dark:text-white transition-colors group-hover:text-orange-600 dark:group-hover:text-orange-400">
+                            Student Portfolio</h3>
                         <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Professional Resume Webapps</p>
                     </div>
 
-                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/80 backdrop-blur-xl text-slate-900 dark:text-white p-4 rounded-full shadow-2xl border-4 border-slate-100 dark:border-gray-700 text-center z-20 hover:scale-110 transition-transform group">
-                        <div class="text-xs text-slate-500 dark:text-gray-400 uppercase tracking-widest group-hover:text-vermaBlue dark:group-hover:text-blue-400">Since</div>
-                        <div class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-vermaBlue to-purple-600 dark:from-blue-400 dark:to-white">2023</div>
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white/90 dark:bg-black/80 backdrop-blur-xl text-slate-900 dark:text-white p-4 rounded-full shadow-2xl border-4 border-slate-100 dark:border-gray-700 text-center z-20 hover:scale-110 transition-transform group">
+                        <div
+                            class="text-xs text-slate-500 dark:text-gray-400 uppercase tracking-widest group-hover:text-vermaBlue dark:group-hover:text-blue-400">
+                            Since</div>
+                        <div
+                            class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-vermaBlue to-purple-600 dark:from-blue-400 dark:to-white">
+                            2023</div>
                     </div>
                 </div>
 
@@ -399,67 +788,90 @@
         </div>
     </section>
 
-    <section id="solution" class="py-24 relative bg-slate-100 dark:bg-[#03081a] transition-colors duration-500 overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/50 dark:via-blue-900/5 to-transparent pointer-events-none"></div>
-        
+    <section id="solution"
+        class="py-24 relative bg-slate-100 dark:bg-[#03081a] transition-colors duration-500 overflow-hidden">
+        <div
+            class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-50/50 dark:via-blue-900/5 to-transparent pointer-events-none">
+        </div>
+
         <div class="w-full relative z-30 pb-20 -mt-10">
-           <div class="w-full px-0 md:px-4">
-                
-                <div class="future-frame w-[92%] md:w-full md:max-w-[99%] mx-auto aspect-video h-auto md:aspect-auto md:h-[70vh] shadow-2xl group border border-slate-200 dark:border-slate-800">
-                    
-                    <div class="absolute top-4 left-4 z-30 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-lg pointer-events-none">
+            <div class="w-full px-0 md:px-4">
+
+                <div
+                    class="future-frame w-[92%] md:w-full md:max-w-[99%] mx-auto aspect-video h-auto md:aspect-auto md:h-[70vh] shadow-2xl group border border-slate-200 dark:border-slate-800">
+
+                    <div
+                        class="absolute top-4 left-4 z-30 flex items-center gap-2 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 shadow-lg pointer-events-none">
                         <div class="w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_#ef4444]"></div>
                         <span class="text-[10px] font-mono text-white/90 tracking-widest font-bold">LIVE_VIEW</span>
                     </div>
 
                     <div id="mediaCarousel" class="relative w-full flex-1 overflow-hidden group/slider">
                         <div id="carouselSlides" class="relative w-full h-full">
-                            </div>
-                        
-                        <button onclick="window.moveSlide(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition opacity-0 group-hover/slider:opacity-100 z-10 focus:outline-none backdrop-blur-sm border border-white/10">
+                        </div>
+
+                        <button onclick="window.moveSlide(-1)"
+                            class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition opacity-0 group-hover/slider:opacity-100 z-10 focus:outline-none backdrop-blur-sm border border-white/10">
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button onclick="window.moveSlide(1)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition opacity-0 group-hover/slider:opacity-100 z-10 focus:outline-none backdrop-blur-sm border border-white/10">
+                        <button onclick="window.moveSlide(1)"
+                            class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70 transition opacity-0 group-hover/slider:opacity-100 z-10 focus:outline-none backdrop-blur-sm border border-white/10">
                             <i class="fas fa-chevron-right"></i>
                         </button>
-                        
-                        <div id="carouselLoader" class="absolute inset-0 flex items-center justify-center text-slate-400 bg-white dark:bg-slate-900 z-20">
-                             <i class="fas fa-circle-notch fa-spin text-2xl"></i>
+
+                        <div id="carouselLoader"
+                            class="absolute inset-0 flex items-center justify-center text-slate-400 bg-white dark:bg-slate-900 z-20">
+                            <i class="fas fa-circle-notch fa-spin text-2xl"></i>
                         </div>
                     </div>
 
                 </div>
-           </div>
+            </div>
         </div>
         <div class="container mx-auto px-4 mb-12">
             <div class="text-center">
-                <span class="text-vermaBlue dark:text-blue-400 font-semibold tracking-wider text-sm uppercase bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-800">Target Audience</span>
-                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mt-4 mb-4 font-serif">Who Is This For?</h2>
-                <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-600 dark:via-white dark:to-red-600 mx-auto rounded-full"></div>
+                <span
+                    class="text-vermaBlue dark:text-blue-400 font-semibold tracking-wider text-sm uppercase bg-blue-50 dark:bg-blue-900/30 px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-800">Target
+                    Audience</span>
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mt-4 mb-4 font-serif">Who Is
+                    This For?</h2>
+                <div
+                    class="w-24 h-1.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 dark:from-blue-600 dark:via-white dark:to-red-600 mx-auto rounded-full">
+                </div>
             </div>
         </div>
 
         <div class="w-full flex overflow-x-auto snap-x snap-mandatory hide-scrollbar px-[5%] md:px-[10%] gap-6 pb-12">
             <div class="slide-card shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center">
-                <div class="glass-base h-full rounded-[2.5rem] card-glow border border-blue-100 dark:border-blue-900/30 flex flex-col overflow-hidden group">
+                <div
+                    class="glass-base h-full rounded-[2.5rem] card-glow border border-blue-100 dark:border-blue-900/30 flex flex-col overflow-hidden group">
                     <div class="audience-img-container">
-                        <img src="https://www.shutterstock.com/shutterstock/videos/3412879129/thumb/1.jpg?ip=x480" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Shopkeeper">
+                        <img src="https://www.shutterstock.com/shutterstock/videos/3412879129/thumb/1.jpg?ip=x480"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Shopkeeper">
                     </div>
                     <div class="p-8 pt-2">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 border border-blue-500/20">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-600 dark:text-blue-400 border border-blue-500/20">
                                 <i class="fas fa-store"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Shopkeepers</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-red-500/5 dark:bg-red-500/10 p-4 rounded-2xl border border-red-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The Problem</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Paying high monthly maintenance fees for simple web presence.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The
+                                    Problem</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Paying high monthly maintenance
+                                    fees for simple web presence.</p>
                             </div>
                             <div class="bg-green-500/5 dark:bg-green-500/10 p-4 rounded-2xl border border-green-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our Solution</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Maintenance-free, semi-dynamic assets with zero recurring costs.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our
+                                    Solution</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Maintenance-free, semi-dynamic
+                                    assets with zero recurring costs.</p>
                             </div>
                         </div>
                     </div>
@@ -467,25 +879,35 @@
             </div>
 
             <div class="slide-card shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center">
-                <div class="glass-base h-full rounded-[2.5rem] card-glow border border-orange-100 dark:border-orange-900/30 flex flex-col overflow-hidden group">
+                <div
+                    class="glass-base h-full rounded-[2.5rem] card-glow border border-orange-100 dark:border-orange-900/30 flex flex-col overflow-hidden group">
                     <div class="audience-img-container">
-                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Restaurant">
+                        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Restaurant">
                     </div>
                     <div class="p-8 pt-2">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 border border-orange-500/20">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center text-orange-600 dark:text-orange-400 border border-orange-500/20">
                                 <i class="fas fa-pizza-slice"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Restaurants</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-red-500/5 dark:bg-red-500/10 p-4 rounded-2xl border border-red-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The Problem</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">High menu printing costs and slow customer order cycles.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The
+                                    Problem</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">High menu printing costs and slow
+                                    customer order cycles.</p>
                             </div>
                             <div class="bg-green-500/5 dark:bg-green-500/10 p-4 rounded-2xl border border-green-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our Solution</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Interactive QR Menus with an instant price update dashboard.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our
+                                    Solution</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Interactive QR Menus with an
+                                    instant price update dashboard.</p>
                             </div>
                         </div>
                     </div>
@@ -493,25 +915,35 @@
             </div>
 
             <div class="slide-card shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center">
-                <div class="glass-base h-full rounded-[2.5rem] card-glow border border-red-100 dark:border-red-900/30 flex flex-col overflow-hidden group">
+                <div
+                    class="glass-base h-full rounded-[2.5rem] card-glow border border-red-100 dark:border-red-900/30 flex flex-col overflow-hidden group">
                     <div class="audience-img-container">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Hotel">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Hotel">
                     </div>
                     <div class="p-8 pt-2">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400 border border-red-500/20">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-red-500/10 flex items-center justify-center text-red-600 dark:text-red-400 border border-red-500/20">
                                 <i class="fas fa-hotel"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Hotel Owners</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-red-500/5 dark:bg-red-500/10 p-4 rounded-2xl border border-red-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The Problem</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Inefficient guest support and paper info books that outdated quickly.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The
+                                    Problem</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Inefficient guest support and paper
+                                    info books that outdated quickly.</p>
                             </div>
                             <div class="bg-green-500/5 dark:bg-green-500/10 p-4 rounded-2xl border border-green-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our Solution</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Digital QR Guest portals for requests and real-time information.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our
+                                    Solution</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Digital QR Guest portals for
+                                    requests and real-time information.</p>
                             </div>
                         </div>
                     </div>
@@ -519,25 +951,35 @@
             </div>
 
             <div class="slide-card shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center">
-                <div class="glass-base h-full rounded-[2.5rem] card-glow border border-green-100 dark:border-green-900/30 flex flex-col overflow-hidden group">
+                <div
+                    class="glass-base h-full rounded-[2.5rem] card-glow border border-green-100 dark:border-green-900/30 flex flex-col overflow-hidden group">
                     <div class="audience-img-container">
-                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Students">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Students">
                     </div>
                     <div class="p-8 pt-2">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 dark:text-green-400 border border-green-500/20">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 dark:text-green-400 border border-green-500/20">
                                 <i class="fas fa-graduation-cap"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Students</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-red-500/5 dark:bg-red-500/10 p-4 rounded-2xl border border-red-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The Problem</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Basic PDF resumes fail to stand out during high-competition job hunts.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The
+                                    Problem</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Basic PDF resumes fail to stand out
+                                    during high-competition job hunts.</p>
                             </div>
                             <div class="bg-green-500/5 dark:bg-green-500/10 p-4 rounded-2xl border border-green-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our Solution</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Glossy, professional web resumes with interactive clickable assets.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our
+                                    Solution</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Glossy, professional web resumes
+                                    with interactive clickable assets.</p>
                             </div>
                         </div>
                     </div>
@@ -545,25 +987,35 @@
             </div>
 
             <div class="slide-card shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center">
-                <div class="glass-base h-full rounded-[2.5rem] card-glow border border-emerald-100 dark:border-emerald-900/30 flex flex-col overflow-hidden group">
+                <div
+                    class="glass-base h-full rounded-[2.5rem] card-glow border border-emerald-100 dark:border-emerald-900/30 flex flex-col overflow-hidden group">
                     <div class="audience-img-container">
-                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Clinic">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Clinic">
                     </div>
                     <div class="p-8 pt-2">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                                 <i class="fas fa-hospital-user"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Clinics</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-red-500/5 dark:bg-red-500/10 p-4 rounded-2xl border border-red-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The Problem</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Crowded waiting rooms and paper-based data entry delays.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The
+                                    Problem</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Crowded waiting rooms and
+                                    paper-based data entry delays.</p>
                             </div>
                             <div class="bg-green-500/5 dark:bg-green-500/10 p-4 rounded-2xl border border-green-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our Solution</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">QR Patient Check-in systems for streamlined registration.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our
+                                    Solution</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">QR Patient Check-in systems for
+                                    streamlined registration.</p>
                             </div>
                         </div>
                     </div>
@@ -571,25 +1023,35 @@
             </div>
 
             <div class="slide-card shrink-0 w-[85vw] md:w-[45vw] lg:w-[30vw] snap-center">
-                <div class="glass-base h-full rounded-[2.5rem] card-glow border border-indigo-100 dark:border-indigo-900/30 flex flex-col overflow-hidden group">
+                <div
+                    class="glass-base h-full rounded-[2.5rem] card-glow border border-indigo-100 dark:border-indigo-900/30 flex flex-col overflow-hidden group">
                     <div class="audience-img-container">
-                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/c0/c9/7c/mall-galleries.jpg?w=900&h=500&s=1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Mall">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/c0/c9/7c/mall-galleries.jpg?w=900&h=500&s=1"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            alt="Mall">
                     </div>
                     <div class="p-8 pt-2">
                         <div class="flex items-center gap-3 mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
                                 <i class="fas fa-building"></i>
                             </div>
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Shopping Malls</h3>
                         </div>
                         <div class="space-y-4">
                             <div class="bg-red-500/5 dark:bg-red-500/10 p-4 rounded-2xl border border-red-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The Problem</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Static maps and directories failing to navigate complex layouts.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-red-500 block mb-1">The
+                                    Problem</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Static maps and directories failing
+                                    to navigate complex layouts.</p>
                             </div>
                             <div class="bg-green-500/5 dark:bg-green-500/10 p-4 rounded-2xl border border-green-500/10">
-                                <span class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our Solution</span>
-                                <p class="text-sm text-slate-600 dark:text-gray-400">Interactive Digital Wayfinding apps for store discovery.</p>
+                                <span
+                                    class="text-[10px] font-bold uppercase tracking-widest text-green-500 block mb-1">Our
+                                    Solution</span>
+                                <p class="text-sm text-slate-600 dark:text-gray-400">Interactive Digital Wayfinding apps
+                                    for store discovery.</p>
                             </div>
                         </div>
                     </div>
@@ -607,30 +1069,39 @@
         </div>
     </section>
 
-    <section id="services" class="py-20 relative scroll-mt-20 bg-slate-50 dark:bg-[#020617] transition-colors duration-500">
+    <section id="services"
+        class="py-20 relative scroll-mt-20 bg-slate-50 dark:bg-[#020617] transition-colors duration-500">
         <div class="container mx-auto px-4 relative z-10">
             <div class="w-full max-w-4xl mx-auto mb-16 relative z-20 px-4">
-                <div class="glass-card rounded-2xl p-1 border border-white/20 shadow-2xl overflow-hidden group/audio" id="audioContainer">
-                    <div class="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
-                        
+                <div class="glass-card rounded-2xl p-1 border border-white/20 shadow-2xl overflow-hidden group/audio"
+                    id="audioContainer">
+                    <div
+                        class="bg-white/60 dark:bg-slate-900/60 backdrop-blur-xl rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-8 relative overflow-hidden">
+
                         <div class="flex-1 text-center md:text-left relative z-10">
                             <div class="flex items-center justify-center md:justify-start gap-2 mb-3">
                                 <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-                                <span class="text-xs font-bold tracking-[0.25em] text-blue-600 dark:text-blue-400 uppercase">Executive Briefing</span>
+                                <span
+                                    class="text-xs font-bold tracking-[0.25em] text-blue-600 dark:text-blue-400 uppercase">Executive
+                                    Briefing</span>
                             </div>
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 font-serif">Strategic Digital Vision</h3>
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 font-serif">Strategic
+                                Digital Vision</h3>
                             <p class="text-sm text-slate-600 dark:text-gray-300 leading-relaxed mb-4">
-                                Listen to a concise overview of how our semi-dynamic web architecture drives efficiency and reduces operational costs. 
+                                Listen to a concise overview of how our semi-dynamic web architecture drives efficiency
+                                and reduces operational costs.
                             </p>
-                            <div class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-gray-400 bg-slate-100 dark:bg-white/5 px-3 py-1.5 rounded-full">
+                            <div
+                                class="inline-flex items-center gap-2 text-xs font-semibold text-slate-500 dark:text-gray-400 bg-slate-100 dark:bg-white/5 px-3 py-1.5 rounded-full">
                                 <i class="fas fa-info-circle"></i>
                                 <span>Tap play to listen • Visuals active during playback</span>
                             </div>
                         </div>
 
                         <div class="relative w-full md:w-auto flex flex-col items-center gap-4 z-10">
-                            
-                            <div class="flex items-end justify-center gap-1.5 h-12 w-full md:w-64 opacity-50 transition-opacity duration-300">
+
+                            <div
+                                class="flex items-end justify-center gap-1.5 h-12 w-full md:w-64 opacity-50 transition-opacity duration-300">
                                 <div class="v-bar"></div>
                                 <div class="v-bar"></div>
                                 <div class="v-bar"></div>
@@ -641,76 +1112,105 @@
                                 <div class="v-bar"></div>
                             </div>
 
-                            <audio id="mainAudio" controls class="w-full md:w-72 h-10 rounded-full outline-none shadow-md hover:shadow-lg transition-shadow" style="filter: contrast(0.95);">
+                            <audio id="mainAudio" controls
+                                class="w-full md:w-72 h-10 rounded-full outline-none shadow-md hover:shadow-lg transition-shadow"
+                                style="filter: contrast(0.95);">
                                 <source src="audio/audio.mp3" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
                         </div>
-                        
-                        <div class="audio-glow absolute top-1/2 right-0 md:right-10 -translate-y-1/2 w-64 h-64 bg-blue-500/20 blur-[90px] rounded-full pointer-events-none"></div>
+
+                        <div
+                            class="audio-glow absolute top-1/2 right-0 md:right-10 -translate-y-1/2 w-64 h-64 bg-blue-500/20 blur-[90px] rounded-full pointer-events-none">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <div class="text-center mb-12 max-w-2xl mx-auto">
-                <span class="text-vermaBlue dark:text-blue-400 font-semibold tracking-wider text-sm uppercase bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">Our Expertise</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-4 mb-4 font-serif">Priority Work</h2>
-                <div class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-green-500 dark:from-blue-500 dark:to-indigo-500 mx-auto rounded-full"></div>
-                <p class="mt-6 text-slate-600 dark:text-gray-400">Explore our expanded list of professional digital solutions below.</p>
+                <span
+                    class="text-vermaBlue dark:text-blue-400 font-semibold tracking-wider text-sm uppercase bg-blue-50 dark:bg-blue-900/20 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">Our
+                    Expertise</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-900 dark:text-white mt-4 mb-4 font-serif">Priority
+                    Work</h2>
+                <div
+                    class="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-green-500 dark:from-blue-500 dark:to-indigo-500 mx-auto rounded-full">
+                </div>
+                <p class="mt-6 text-slate-600 dark:text-gray-400">Explore our expanded list of professional digital
+                    solutions below.</p>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10" id="mainServiceGrid">
-                <div onclick="window.toggleSubGrid('web', this)" class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gradient-to-tr from-blue-500 to-indigo-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
+                <div onclick="window.toggleSubGrid('web', this)"
+                    class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-tr from-blue-500 to-indigo-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
                         <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Web Development</h3>
                     <p class="text-xs text-slate-500 dark:text-gray-400 mb-4">Portfolio, E-commerce & Landings</p>
-                    <span class="text-vermaBlue dark:text-blue-400 text-sm font-semibold group-hover:underline">View All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
+                    <span class="text-vermaBlue dark:text-blue-400 text-sm font-semibold group-hover:underline">View All
+                        <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
                 </div>
-                
-                <div onclick="window.toggleSubGrid('assets', this)" class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gradient-to-tr from-green-500 to-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
+
+                <div onclick="window.toggleSubGrid('assets', this)"
+                    class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-tr from-green-500 to-emerald-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
                         <i class="fas fa-qrcode"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">QR Ecosystem</h3>
                     <p class="text-xs text-slate-500 dark:text-gray-400 mb-4">Menus, Catalogs & Support</p>
-                    <span class="text-green-600 dark:text-green-400 text-sm font-semibold group-hover:underline">View All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
+                    <span class="text-green-600 dark:text-green-400 text-sm font-semibold group-hover:underline">View
+                        All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
                 </div>
-                
-                <div onclick="window.toggleSubGrid('identity', this)" class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gradient-to-tr from-purple-500 to-fuchsia-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
+
+                <div onclick="window.toggleSubGrid('identity', this)"
+                    class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-tr from-purple-500 to-fuchsia-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
                         <i class="fas fa-fingerprint"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Brand Identity</h3>
                     <p class="text-xs text-slate-500 dark:text-gray-400 mb-4">Logos, SEO & GMB Visibility</p>
-                    <span class="text-purple-600 dark:text-purple-400 text-sm font-semibold group-hover:underline">View All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
+                    <span class="text-purple-600 dark:text-purple-400 text-sm font-semibold group-hover:underline">View
+                        All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
                 </div>
-                
-                <div onclick="window.toggleSubGrid('support', this)" class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
-                    <div class="w-16 h-16 bg-gradient-to-tr from-orange-500 to-red-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
+
+                <div onclick="window.toggleSubGrid('support', this)"
+                    class="service-card group glass-card rounded-2xl p-6 hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col items-center text-center">
+                    <div
+                        class="w-16 h-16 bg-gradient-to-tr from-orange-500 to-red-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-4">
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3 class="text-xl font-bold mb-2 text-slate-900 dark:text-white">Tech Support</h3>
                     <p class="text-xs text-slate-500 dark:text-gray-400 mb-4">Maintenance, SSL & Hosting</p>
-                    <span class="text-orange-600 dark:text-orange-400 text-sm font-semibold group-hover:underline">View All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
+                    <span class="text-orange-600 dark:text-orange-400 text-sm font-semibold group-hover:underline">View
+                        All <i class="fas fa-chevron-down ml-1 text-xs"></i></span>
                 </div>
             </div>
 
             <div id="subGridWrapper" class="w-full relative z-20">
-                <div class="glass rounded-2xl p-6 md:p-8 mt-6 relative shadow-2xl bg-white/90 dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700">
-                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white dark:bg-gray-800 border-t border-l border-slate-200 dark:border-gray-600 transform rotate-45 z-0"></div>
+                <div
+                    class="glass rounded-2xl p-6 md:p-8 mt-6 relative shadow-2xl bg-white/90 dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 w-6 h-6 bg-white dark:bg-gray-800 border-t border-l border-slate-200 dark:border-gray-600 transform rotate-45 z-0">
+                    </div>
                     <div class="relative z-10">
-                        <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-200 dark:border-gray-700">
+                        <div
+                            class="flex justify-between items-center mb-6 pb-4 border-b border-slate-200 dark:border-gray-700">
                             <div>
-                                <h3 id="subGridTitle" class="text-2xl font-bold text-slate-900 dark:text-white">Service Details</h3>
+                                <h3 id="subGridTitle" class="text-2xl font-bold text-slate-900 dark:text-white">Service
+                                    Details</h3>
                                 <p class="text-sm text-slate-500 dark:text-gray-400">Specific expert solutions</p>
                             </div>
-                            <button onclick="window.closeSubGrid()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-700 hover:bg-red-100 hover:text-red-500 transition-colors">
+                            <button onclick="window.closeSubGrid()"
+                                class="w-8 h-8 rounded-full bg-slate-100 dark:bg-gray-700 hover:bg-red-100 hover:text-red-500 transition-colors">
                                 <i class="fas fa-times"></i>
                             </button>
                         </div>
-                        <div id="subGridContent" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
+                        <div id="subGridContent"
+                            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
                     </div>
                 </div>
             </div>
@@ -719,25 +1219,32 @@
 
     <section id="why-us" class="py-20 relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-800 -z-20"></div>
-        <div class="absolute top-0 right-0 w-96 h-96 bg-pink-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-blob"></div>
-        <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+        <div
+            class="absolute top-0 right-0 w-96 h-96 bg-pink-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-blob">
+        </div>
+        <div
+            class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-400 rounded-full mix-blend-overlay filter blur-3xl opacity-30 animate-blob animation-delay-2000">
+        </div>
 
         <div class="container mx-auto px-4 relative z-10 flex flex-col lg:flex-row gap-16">
             <div class="lg:w-1/2 flex flex-col justify-center">
                 <h2 class="text-4xl font-bold text-white mb-2 font-serif">Why Choose Us?</h2>
                 <p class="text-blue-200 mb-10">We deliver glossy, modern assets with zero headache.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/10">
+                    <div
+                        class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-green-500/10">
                         <i class="fas fa-globe text-3xl text-green-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white">Web Specialists</h4>
                         <p class="text-sm text-gray-200 mt-2">We create intractive ebapplications</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10">
+                    <div
+                        class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition duration-300 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-cyan-500/10">
                         <i class="fas fa-bolt text-3xl text-cyan-400 mb-4"></i>
                         <h4 class="text-lg font-bold text-white">Modern Tech Stack</h4>
                         <p class="text-sm text-gray-200 mt-2">Fast, secure & reliable.</p>
                     </div>
-                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition duration-300 sm:col-span-2 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-yellow-500/10">
+                    <div
+                        class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/10 hover:bg-white/20 transition duration-300 sm:col-span-2 transform hover:-translate-y-1 hover:shadow-lg hover:shadow-yellow-500/10">
                         <div class="flex items-center gap-4">
                             <i class="fas fa-tags text-3xl text-yellow-400"></i>
                             <div>
@@ -749,58 +1256,83 @@
                 </div>
                 <div class="bg-black/20 backdrop-blur-md rounded-2xl p-6 border border-white/5">
                     <div class="flex justify-between items-center mb-4">
-                        <h4 class="text-white font-bold flex items-center"><i class="fas fa-history mr-2"></i> Your Interest</h4>
-                        <button onclick="window.clearRequests()" class="text-xs text-red-200 hover:text-white hover:bg-red-500/50 px-2 py-1 rounded transition">Clear All</button>
+                        <h4 class="text-white font-bold flex items-center"><i class="fas fa-history mr-2"></i> Your
+                            Interest</h4>
+                        <button onclick="window.clearRequests()"
+                            class="text-xs text-red-200 hover:text-white hover:bg-red-500/50 px-2 py-1 rounded transition">Clear
+                            All</button>
                     </div>
-                    <div id="requestList" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-60 overflow-y-auto pr-2 custom-scrollbar">
-                        <div class="col-span-full text-center py-4 text-blue-200 text-sm italic border border-dashed border-white/20 rounded-lg">No history found.</div>
+                    <div id="requestList"
+                        class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-60 overflow-y-auto pr-2 custom-scrollbar">
+                        <div
+                            class="col-span-full text-center py-4 text-blue-200 text-sm italic border border-dashed border-white/20 rounded-lg">
+                            No history found.</div>
                     </div>
                 </div>
             </div>
 
             <div class="lg:w-1/2 flex items-center">
-                <div class="glass-card rounded-3xl p-8 md:p-12 w-full bg-white/90 dark:bg-[#0a1525]/90 shadow-2xl border border-white/10">
+                <div
+                    class="glass-card rounded-3xl p-8 md:p-12 w-full bg-white/90 dark:bg-[#0a1525]/90 shadow-2xl border border-white/10">
                     <div class="text-center mb-10">
-                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 font-serif">Ready to go digital?</h3>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 font-serif">Ready to go
+                            digital?</h3>
                         <p class="text-slate-500 dark:text-gray-400">Starting a project is simple and fast.</p>
                     </div>
 
-                    <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 dark:before:via-gray-600 before:to-transparent">
-                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-gray-600 bg-blue-100 dark:bg-blue-900 group-hover:bg-vermaBlue dark:group-hover:bg-blue-600 group-hover:text-white text-vermaBlue dark:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300">
+                    <div
+                        class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 dark:before:via-gray-600 before:to-transparent">
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-gray-600 bg-blue-100 dark:bg-blue-900 group-hover:bg-vermaBlue dark:group-hover:bg-blue-600 group-hover:text-white text-vermaBlue dark:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300">
                                 <span class="font-bold">1</span>
                             </div>
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-200 dark:border-gray-700 bg-white/50 dark:bg-white/5 shadow-sm backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-200 dark:border-gray-700 bg-white/50 dark:bg-white/5 shadow-sm backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
                                 <h4 class="font-bold text-slate-900 dark:text-white">Choose Solution</h4>
-                                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Select Web Dev or QR Ecosystem.</p>
+                                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Select Web Dev or QR Ecosystem
+                                    , Or many more. /p>
                             </div>
                         </div>
 
-                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-gray-600 bg-blue-100 dark:bg-blue-900 group-hover:bg-vermaBlue dark:group-hover:bg-blue-600 group-hover:text-white text-vermaBlue dark:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300">
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-gray-600 bg-blue-100 dark:bg-blue-900 group-hover:bg-vermaBlue dark:group-hover:bg-blue-600 group-hover:text-white text-vermaBlue dark:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300">
                                 <span class="font-bold">2</span>
                             </div>
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-200 dark:border-gray-700 bg-white/50 dark:bg-white/5 shadow-sm backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-200 dark:border-gray-700 bg-white/50 dark:bg-white/5 shadow-sm backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
                                 <h4 class="font-bold text-slate-900 dark:text-white">Submit Details</h4>
-                                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Chat via WhatsApp for instant quote.</p>
+                                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Start by submitting your
+                                    details and uploading a reference poster via our inquiry form. We review your vision
+                                    instantly, then connect directly on WhatsApp</p>
                             </div>
                         </div>
 
-                        <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                            <div class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-gray-600 bg-blue-100 dark:bg-blue-900 group-hover:bg-vermaBlue dark:group-hover:bg-blue-600 group-hover:text-white text-vermaBlue dark:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300">
+                        <div
+                            class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                            <div
+                                class="flex items-center justify-center w-10 h-10 rounded-full border border-white dark:border-gray-600 bg-blue-100 dark:bg-blue-900 group-hover:bg-vermaBlue dark:group-hover:bg-blue-600 group-hover:text-white text-vermaBlue dark:text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 transition-colors duration-300">
                                 <span class="font-bold">3</span>
                             </div>
-                            <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-200 dark:border-gray-700 bg-white/50 dark:bg-white/5 shadow-sm backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
+                            <div
+                                class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-4 rounded-xl border border-slate-200 dark:border-gray-700 bg-white/50 dark:bg-white/5 shadow-sm backdrop-blur-sm hover:bg-white/80 dark:hover:bg-white/10 transition-colors">
                                 <h4 class="font-bold text-slate-900 dark:text-white">Digital Delivery</h4>
-                                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Receive assets and go live.</p>
+                                <p class="text-xs text-slate-500 dark:text-gray-400 mt-1">Receive assets and go live.
+                                </p>
                             </div>
                         </div>
                     </div>
 
                     <div class="mt-10 text-center">
-                        <a href="service.html" class="inline-block w-full bg-gradient-to-r from-red-500 to-pink-600 dark:from-red-600 dark:to-pink-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] transition transform active:scale-95 group relative overflow-hidden">
-                            <span class="absolute top-0 left-0 w-full h-full bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-                            Start Your Project <i class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                        <a href="service.html"
+                            class="inline-block w-full bg-gradient-to-r from-red-500 to-pink-600 dark:from-red-600 dark:to-pink-700 text-white py-4 rounded-xl font-bold text-lg hover:shadow-lg dark:hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] transition transform active:scale-95 group relative overflow-hidden">
+                            <span
+                                class="absolute top-0 left-0 w-full h-full bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                            Start Your Project <i
+                                class="fas fa-chevron-right ml-2 group-hover:translate-x-1 transition-transform"></i>
                         </a>
                     </div>
                 </div>
@@ -808,7 +1340,8 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-16 bg-slate-50 dark:bg-[#020617] border-t border-slate-200 dark:border-gray-900 transition-colors duration-500">
+    <section id="gallery"
+        class="py-16 bg-slate-50 dark:bg-[#020617] border-t border-slate-200 dark:border-gray-900 transition-colors duration-500">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between mb-8">
                 <div>
@@ -819,20 +1352,24 @@
                 </div>
             </div>
             <div id="galleryGrid" class="gallery-container">
-                <div class="col-span-full text-center py-10 text-slate-400 dark:text-gray-500 italic">Loading gallery...</div>
+                <div class="col-span-full text-center py-10 text-slate-400 dark:text-gray-500 italic">Loading gallery...
+                </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-slate-900 dark:bg-[#010409] text-gray-400 pt-16 pb-8 border-t border-slate-800 dark:border-gray-900">
+    <footer id="contact"
+        class="bg-slate-900 dark:bg-[#010409] text-gray-400 pt-16 pb-8 border-t border-slate-800 dark:border-gray-900">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                 <div>
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="images/logo.png" class="w-10 h-10 rounded-lg shadow-lg" alt="Logo" onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff'">
+                        <img src="images/logo.png" class="w-10 h-10 rounded-lg shadow-lg" alt="Logo"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff'">
                         <span class="text-xl font-bold text-white uppercase tracking-tighter">QUANTAZEROPLUS</span>
                     </div>
-                    <p class="text-sm leading-relaxed mb-6">Democratizing the web with affordable, high-impact digital solutions for everyone. Since 2023.</p>
+                    <p class="text-sm leading-relaxed mb-6">Democratizing the web with affordable, high-impact digital
+                        solutions for everyone. Since 2023.</p>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-6">Quick Links</h4>
@@ -845,9 +1382,12 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Solutions</h4>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Shopkeeper Sites</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Hotel QR Portals</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Student Web Resumes</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i>
+                            Shopkeeper Sites</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Hotel QR
+                            Portals</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Student
+                            Web Resumes</li>
                     </ul>
                 </div>
                 <div>
@@ -859,13 +1399,16 @@
                         </li>
                         <li>
                             <div class="flex gap-4 mt-4">
-                                <a href="https://wa.me/919341478114" target="_blank" class="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <a href="https://wa.me/919341478114" target="_blank"
+                                    class="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
                                     <i class="fab fa-whatsapp text-2xl"></i>
                                 </a>
-                                <a href="tel:6201680161" class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <a href="tel:6201680161"
+                                    class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
                                     <i class="fas fa-phone-alt text-xl"></i>
                                 </a>
-                                <a href="mailto:quantazeroplus6022@gmail.com" class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <a href="mailto:quantazeroplus6022@gmail.com"
+                                    class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
                                     <i class="fas fa-envelope text-xl"></i>
                                 </a>
                             </div>
@@ -875,57 +1418,75 @@
             </div>
             <div class="border-t border-slate-800 dark:border-gray-900 pt-8 text-center text-xs">
                 <p>&copy; 2023-2025 Quantazeroplus. All rights reserved.</p>
-                <button onclick="window.openPasswordModal()" class="mt-4 text-gray-600 hover:text-white transition-opacity opacity-50" title="Admin">
+                <button onclick="window.openPasswordModal()"
+                    class="mt-4 text-gray-600 hover:text-white transition-opacity opacity-50" title="Admin">
                     <i class="fas fa-lock"></i>
                 </button>
             </div>
         </div>
     </footer>
 
-    <div id="customPopup" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] hidden flex items-center justify-center px-4">
-        <div class="bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-2xl p-6 max-w-sm w-full shadow-2xl transform scale-100 transition-all animate-scale-in">
+    <div id="customPopup"
+        class="fixed inset-0 bg-black/80 backdrop-blur-md z-[200] hidden flex items-center justify-center px-4">
+        <div
+            class="bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-2xl p-6 max-w-sm w-full shadow-2xl transform scale-100 transition-all animate-scale-in">
             <div class="text-center mb-6">
-                <div id="popupIcon" class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-lg"></div>
+                <div id="popupIcon"
+                    class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-3xl shadow-lg">
+                </div>
                 <h3 id="popupTitle" class="text-xl font-bold text-slate-900 dark:text-white mb-2"></h3>
                 <p id="popupMessage" class="text-slate-600 dark:text-gray-300 text-sm leading-relaxed"></p>
             </div>
             <div class="flex gap-3" id="popupActions">
-                <button id="popupCancel" class="flex-1 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 text-slate-800 dark:text-white py-3 rounded-xl font-bold transition hidden">Cancel</button>
-                <button id="popupConfirm" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold shadow-lg shadow-blue-500/30 transition">OK</button>
+                <button id="popupCancel"
+                    class="flex-1 bg-slate-100 dark:bg-gray-700 hover:bg-slate-200 dark:hover:bg-gray-600 text-slate-800 dark:text-white py-3 rounded-xl font-bold transition hidden">Cancel</button>
+                <button id="popupConfirm"
+                    class="flex-1 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-xl font-bold shadow-lg shadow-blue-500/30 transition">OK</button>
             </div>
         </div>
     </div>
 
-    <div id="passwordModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[150] hidden flex items-center justify-center px-4">
-        <div class="glass-card bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs w-full shadow-2xl animate-fade-in" id="passwordBox">
+    <div id="passwordModal"
+        class="fixed inset-0 bg-black/80 backdrop-blur-md z-[150] hidden flex items-center justify-center px-4">
+        <div class="glass-card bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-2xl p-6 max-w-xs w-full shadow-2xl animate-fade-in"
+            id="passwordBox">
             <div class="text-center mb-6">
-                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600 dark:text-blue-400">
+                <div
+                    class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-3 text-blue-600 dark:text-blue-400">
                     <i class="fas fa-user-shield text-xl"></i>
                 </div>
                 <h4 class="text-lg font-bold text-slate-900 dark:text-white">Admin Access</h4>
             </div>
-            <input type="password" id="adminPassword" placeholder="Enter PIN" class="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-xl mb-4 bg-slate-50 dark:bg-gray-800/50 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none text-center tracking-widest backdrop-blur-sm">
+            <input type="password" id="adminPassword" placeholder="Enter PIN"
+                class="w-full px-4 py-3 border border-slate-300 dark:border-gray-600 rounded-xl mb-4 bg-slate-50 dark:bg-gray-800/50 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none text-center tracking-widest backdrop-blur-sm">
             <div class="flex gap-3">
-                <button onclick="document.getElementById('passwordModal').classList.add('hidden')" class="flex-1 bg-slate-100 dark:bg-gray-700 text-slate-700 py-2.5 rounded-xl">Cancel</button>
-                <button onclick="window.checkPassword()" class="flex-1 bg-blue-600 text-white py-2.5 rounded-xl">Unlock</button>
+                <button onclick="document.getElementById('passwordModal').classList.add('hidden')"
+                    class="flex-1 bg-slate-100 dark:bg-gray-700 text-slate-700 py-2.5 rounded-xl">Cancel</button>
+                <button onclick="window.checkPassword()"
+                    class="flex-1 bg-blue-600 text-white py-2.5 rounded-xl">Unlock</button>
             </div>
         </div>
     </div>
 
-    <div id="uploadModal" class="fixed inset-0 bg-black/80 backdrop-blur-md z-[150] hidden flex items-center justify-center px-4">
-        <div class="glass-card bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-2xl p-6 max-w-md w-full shadow-2xl relative h-[80vh] overflow-y-auto custom-scrollbar">
+    <div id="uploadModal"
+        class="fixed inset-0 bg-black/80 backdrop-blur-md z-[150] hidden flex items-center justify-center px-4">
+        <div
+            class="glass-card bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-2xl p-6 max-w-md w-full shadow-2xl relative h-[80vh] overflow-y-auto custom-scrollbar">
             <button onclick="window.closeAdmin()" class="absolute top-4 right-4 text-slate-400">
                 <i class="fas fa-times text-xl"></i>
             </button>
             <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-6">Portfolio Admin</h3>
             <div class="space-y-4 border-b pb-6 mb-6">
-                <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center cursor-pointer" onclick="document.getElementById('imageInput').click()">
+                <div class="border-2 border-dashed border-slate-300 rounded-xl p-8 text-center cursor-pointer"
+                    onclick="document.getElementById('imageInput').click()">
                     <i class="fas fa-image text-4xl text-slate-400 mb-3"></i>
                     <p class="text-sm text-slate-600 dark:text-gray-300">Click to upload</p>
-                    <input type="file" id="imageInput" accept="image/*" class="hidden" onchange="window.previewImage(this)">
+                    <input type="file" id="imageInput" accept="image/*" class="hidden"
+                        onchange="window.previewImage(this)">
                 </div>
                 <div id="imagePreview" class="hidden h-32 w-full rounded-lg object-cover overflow-hidden"></div>
-                <button onclick="window.uploadImage()" class="w-full bg-green-600 text-white py-3 rounded-xl font-bold">Add to Gallery</button>
+                <button onclick="window.uploadImage()"
+                    class="w-full bg-green-600 text-white py-3 rounded-xl font-bold">Add to Gallery</button>
             </div>
             <div id="adminGalleryGrid" class="grid grid-cols-3 gap-3"></div>
         </div>
@@ -939,7 +1500,7 @@
         }
 
         // Theme
-        window.toggleTheme = function() {
+        window.toggleTheme = function () {
             const html = document.documentElement;
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
@@ -954,7 +1515,7 @@
         }
 
         // Nav Scroll
-        window.onscroll = function() {
+        window.onscroll = function () {
             const nav = document.getElementById('navbar');
             if (nav) {
                 if (window.pageYOffset > 50) nav.classList.add('scrolled');
@@ -964,41 +1525,49 @@
 
         // Subgrid Data
         const subServiceData = {
-            'web': { title: 'Web Solutions', items: [
-                { icon: 'fa-shopping-cart', name: 'Shopkeeper Site', color: 'text-blue-500' }, 
-                { icon: 'fa-user-graduate', name: 'Student Portfolio', color: 'text-green-500' }, 
-                { icon: 'fa-rocket', name: 'Landing Page', color: 'text-orange-500' }, 
-                { icon: 'fa-store', name: 'E-commerce Hub', color: 'text-purple-500' },
-                { icon: 'fa-school', name: 'Edu Portal', color: 'text-cyan-500' },
-                { icon: 'fa-code', name: 'Custom Dev', color: 'text-indigo-500' }
-            ] },
-            'assets': { title: 'Digital Assets', items: [
-                { icon: 'fa-utensils', name: 'Digital Menu', color: 'text-cyan-500' }, 
-                { icon: 'fa-book-open', name: 'Product Catalog', color: 'text-blue-400' }, 
-                { icon: 'fa-images', name: 'Property Gallery', color: 'text-emerald-500' },
-                { icon: 'fa-qrcode', name: 'Smart QR Codes', color: 'text-blue-600' }, 
-                { icon: 'fa-id-badge', name: 'Digital V-Card', color: 'text-red-500' }, 
-                { icon: 'fa-file-pdf', name: 'Digital Brochure', color: 'text-orange-500' }
-            ] },
-            'identity': { title: 'Brand Identity', items: [
-                { icon: 'fa-map-marker-alt', name: 'Google Maps', color: 'text-gray-700' }, 
-                { icon: 'fa-paint-brush', name: 'Logo Design', color: 'text-pink-500' }, 
-                { icon: 'fa-hashtag', name: 'Social Setup', color: 'text-blue-400' }, 
-                { icon: 'fa-envelope', name: 'Pro Email', color: 'text-green-600' }, 
-                { icon: 'fa-address-card', name: 'Biz Profile', color: 'text-indigo-400' }, 
-                { icon: 'fa-ad', name: 'Ad Creatives', color: 'text-red-600' }
-            ] },
-            'support': { title: 'Tech Support', items: [
-                { icon: 'fa-sync', name: 'Site Updates', color: 'text-yellow-600' }, 
-                { icon: 'fa-server', name: 'Hosting Setup', color: 'text-gray-400' }, 
-                { icon: 'fa-lock', name: 'SSL Integration', color: 'text-blue-400' }, 
-                { icon: 'fa-bug', name: 'Bug Fixing', color: 'text-yellow-500' }, 
-                { icon: 'fa-tachometer-alt', name: 'Speed Opt', color: 'text-cyan-400' }, 
-                { icon: 'fa-exchange-alt', name: 'Domain Move', color: 'text-red-500' }
-            ] }
+            'web': {
+                title: 'Web Solutions', items: [
+                    { icon: 'fa-shopping-cart', name: 'Shopkeeper Site', color: 'text-blue-500' },
+                    { icon: 'fa-user-graduate', name: 'Student Portfolio', color: 'text-green-500' },
+                    { icon: 'fa-rocket', name: 'Landing Page', color: 'text-orange-500' },
+                    { icon: 'fa-store', name: 'E-commerce Hub', color: 'text-purple-500' },
+                    { icon: 'fa-school', name: 'Edu Portal', color: 'text-cyan-500' },
+                    { icon: 'fa-code', name: 'Custom Dev', color: 'text-indigo-500' }
+                ]
+            },
+            'assets': {
+                title: 'Digital Assets', items: [
+                    { icon: 'fa-utensils', name: 'Digital Menu', color: 'text-cyan-500' },
+                    { icon: 'fa-book-open', name: 'Product Catalog', color: 'text-blue-400' },
+                    { icon: 'fa-images', name: 'Property Gallery', color: 'text-emerald-500' },
+                    { icon: 'fa-qrcode', name: 'Smart QR Codes', color: 'text-blue-600' },
+                    { icon: 'fa-id-badge', name: 'Digital V-Card', color: 'text-red-500' },
+                    { icon: 'fa-file-pdf', name: 'Digital Brochure', color: 'text-orange-500' }
+                ]
+            },
+            'identity': {
+                title: 'Brand Identity', items: [
+                    { icon: 'fa-map-marker-alt', name: 'Google Maps', color: 'text-gray-700' },
+                    { icon: 'fa-paint-brush', name: 'Logo Design', color: 'text-pink-500' },
+                    { icon: 'fa-hashtag', name: 'Social Setup', color: 'text-blue-400' },
+                    { icon: 'fa-envelope', name: 'Pro Email', color: 'text-green-600' },
+                    { icon: 'fa-address-card', name: 'Biz Profile', color: 'text-indigo-400' },
+                    { icon: 'fa-ad', name: 'Ad Creatives', color: 'text-red-600' }
+                ]
+            },
+            'support': {
+                title: 'Tech Support', items: [
+                    { icon: 'fa-sync', name: 'Site Updates', color: 'text-yellow-600' },
+                    { icon: 'fa-server', name: 'Hosting Setup', color: 'text-gray-400' },
+                    { icon: 'fa-lock', name: 'SSL Integration', color: 'text-blue-400' },
+                    { icon: 'fa-bug', name: 'Bug Fixing', color: 'text-yellow-500' },
+                    { icon: 'fa-tachometer-alt', name: 'Speed Opt', color: 'text-cyan-400' },
+                    { icon: 'fa-exchange-alt', name: 'Domain Move', color: 'text-red-500' }
+                ]
+            }
         };
 
-        window.toggleSubGrid = function(category, element) {
+        window.toggleSubGrid = function (category, element) {
             const wrapper = document.getElementById('subGridWrapper');
             const titleEl = document.getElementById('subGridTitle');
             const contentEl = document.getElementById('subGridContent');
@@ -1006,41 +1575,41 @@
             const allCards = document.querySelectorAll('.service-card');
             allCards.forEach(card => card.classList.remove('active'));
             if (currentOpenCategory === category) { window.closeSubGrid(); return; }
-            if(element) element.classList.add('active');
+            if (element) element.classList.add('active');
             const data = subServiceData[category];
-            if(!data) return;
+            if (!data) return;
             titleEl.textContent = data.title;
-            contentEl.innerHTML = ''; 
+            contentEl.innerHTML = '';
             data.items.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = "card-3d group relative bg-white dark:bg-gray-800 rounded-xl p-4 flex items-center gap-3 border shadow-sm cursor-pointer";
                 div.style.animation = `fadeIn 0.5s ease-out forwards ${index * 50}ms`;
                 div.style.opacity = '0';
                 div.innerHTML = `<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-gray-700 flex items-center justify-center text-lg ${item.color} group-hover:scale-110"><i class="fas ${item.icon}"></i></div><span class="font-medium text-sm text-slate-700 dark:text-gray-200">${item.name}</span>`;
-                div.onclick = function() { window.location.href = 'service.html'; };
+                div.onclick = function () { window.location.href = 'service.html'; };
                 contentEl.appendChild(div);
             });
             wrapper.classList.add('show');
             currentOpenCategory = category;
-            setTimeout(() => { wrapper.scrollIntoView({behavior: "smooth", block: "nearest"}); }, 100);
+            setTimeout(() => { wrapper.scrollIntoView({ behavior: "smooth", block: "nearest" }); }, 100);
         }
 
-        window.closeSubGrid = function() {
+        window.closeSubGrid = function () {
             const wrapper = document.getElementById('subGridWrapper');
             const allCards = document.querySelectorAll('.service-card');
             if (wrapper) wrapper.classList.remove('show');
             currentOpenCategory = null;
             allCards.forEach(card => card.classList.remove('active'));
         }
-        
-        window.toggleMenu = function() { 
+
+        window.toggleMenu = function () {
             const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.toggle('hidden'); 
+            if (menu) menu.classList.toggle('hidden');
         }
 
         function loadRequests() {
             const list = document.getElementById('requestList');
-            if(!list) return;
+            if (!list) return;
             let requests = JSON.parse(localStorage.getItem('quantaRequests')) || [];
             list.innerHTML = requests.length ? '' : `<div class="col-span-full text-center py-6 text-slate-400">No history</div>`;
             requests.forEach((req) => {
@@ -1054,7 +1623,7 @@
         let isAdmin = false;
         let currentOpenCategory = null;
         const staticImages = [
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000', 
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000',
             'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000',
             'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000',
             'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000'
@@ -1065,54 +1634,54 @@
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxk3z5jz_AREkLvokLNi0Q45Kg_CP6BZAIpaWbqyq_y0Q_uT1d3yHCR5DvEQwBrMZ72/exec';
         // ********************************************
 
-        window.openPasswordModal = function() { document.getElementById('passwordModal').classList.remove('hidden'); }
-        window.checkPassword = function() {
+        window.openPasswordModal = function () { document.getElementById('passwordModal').classList.remove('hidden'); }
+        window.checkPassword = function () {
             const inputPass = document.getElementById('adminPassword').value;
-            if (inputPass === '6022@#') { 
-                isAdmin = true; 
-                document.getElementById('uploadModal').classList.remove('hidden'); 
-                document.getElementById('passwordModal').classList.add('hidden'); 
-                loadGallery(); 
-                renderAdminGallery(); 
+            if (inputPass === '6022@#') {
+                isAdmin = true;
+                document.getElementById('uploadModal').classList.remove('hidden');
+                document.getElementById('passwordModal').classList.add('hidden');
+                loadGallery();
+                renderAdminGallery();
             }
         }
 
-        window.closeAdmin = function() { isAdmin = false; document.getElementById('uploadModal').classList.add('hidden'); loadGallery(); }
-        
-        window.previewImage = function(input) { 
-            if (input.files[0]) { 
-                const reader = new FileReader(); 
-                reader.onload = function(e) { 
+        window.closeAdmin = function () { isAdmin = false; document.getElementById('uploadModal').classList.add('hidden'); loadGallery(); }
+
+        window.previewImage = function (input) {
+            if (input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
                     const prev = document.getElementById('imagePreview');
                     if (prev) { prev.classList.remove('hidden'); prev.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`; }
-                }; 
-                reader.readAsDataURL(input.files[0]); 
-            } 
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
         }
 
-        window.uploadImage = function() { 
-            const input = document.getElementById('imageInput'); 
-            if (!input || !input.files[0]) return; 
-            const reader = new FileReader(); 
-            reader.onload = function(e) { 
+        window.uploadImage = function () {
+            const input = document.getElementById('imageInput');
+            if (!input || !input.files[0]) return;
+            const reader = new FileReader();
+            reader.onload = function (e) {
                 // In a real app, you would POST to your backend here
                 // For this static demo, we use LocalStorage
-                let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || []; 
-                gallery.unshift(e.target.result); 
-                localStorage.setItem('quantaGallery', JSON.stringify(gallery)); 
-                loadGallery(); 
-                renderAdminGallery(); 
-            }; 
-            reader.readAsDataURL(input.files[0]); 
+                let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
+                gallery.unshift(e.target.result);
+                localStorage.setItem('quantaGallery', JSON.stringify(gallery));
+                loadGallery();
+                renderAdminGallery();
+            };
+            reader.readAsDataURL(input.files[0]);
         }
 
-        window.renderAdminGallery = function() {
+        window.renderAdminGallery = function () {
             const grid = document.getElementById('adminGalleryGrid');
             if (!grid) return;
             let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
             grid.innerHTML = '';
-            gallery.forEach((img, index) => { 
-                grid.innerHTML += `<div class="relative aspect-square"><img src="${img}" class="w-full h-full object-cover rounded-lg border dark:border-gray-700"><button onclick="window.deleteImage(${index})" class="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full"><i class="fas fa-trash text-[10px]"></i></button></div>`; 
+            gallery.forEach((img, index) => {
+                grid.innerHTML += `<div class="relative aspect-square"><img src="${img}" class="w-full h-full object-cover rounded-lg border dark:border-gray-700"><button onclick="window.deleteImage(${index})" class="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full"><i class="fas fa-trash text-[10px]"></i></button></div>`;
             });
         }
 
@@ -1120,7 +1689,7 @@
         async function loadGallery() {
             const grid = document.getElementById('galleryGrid');
             if (!grid) return;
-            
+
             // Fetch dynamically from Drive
             if (SCRIPT_URL && SCRIPT_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
                 try {
@@ -1129,11 +1698,11 @@
                     if (data.status === 'success' && data.media.length > 0) {
                         grid.innerHTML = '';
                         data.media.reverse().forEach((item, index) => {
-                             const div = document.createElement('div');
-                             div.className = 'gallery-item animate-fade-in';
-                             div.style.animationDelay = `${index * 0.1}s`;
-                             div.innerHTML = `<img src="${item.url}" loading="lazy" alt="Gallery Item">`;
-                             grid.appendChild(div);
+                            const div = document.createElement('div');
+                            div.className = 'gallery-item animate-fade-in';
+                            div.style.animationDelay = `${index * 0.1}s`;
+                            div.innerHTML = `<img src="${item.url}" loading="lazy" alt="Gallery Item">`;
+                            grid.appendChild(div);
                         });
                         return;
                     }
@@ -1143,11 +1712,11 @@
             // Fallback to LocalStorage/Static
             let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
             grid.innerHTML = '';
-            staticImages.forEach(img => { 
-                grid.innerHTML += `<div class="gallery-item animate-fade-in"><img src="${img}" alt="Portfolio Item" loading="lazy"></div>`; 
+            staticImages.forEach(img => {
+                grid.innerHTML += `<div class="gallery-item animate-fade-in"><img src="${img}" alt="Portfolio Item" loading="lazy"></div>`;
             });
-            gallery.forEach((img, index) => { 
-                grid.innerHTML += `<div class="gallery-item animate-fade-in"><img src="${img}" loading="lazy">${isAdmin ? `<button class="delete-btn" onclick="window.deleteImage(${index})"><i class="fas fa-trash"></i></button>` : ''}</div>`; 
+            gallery.forEach((img, index) => {
+                grid.innerHTML += `<div class="gallery-item animate-fade-in"><img src="${img}" loading="lazy">${isAdmin ? `<button class="delete-btn" onclick="window.deleteImage(${index})"><i class="fas fa-trash"></i></button>` : ''}</div>`;
             });
         }
 
@@ -1157,17 +1726,17 @@
         let autoSlideInterval;
 
         async function loadMediaCarousel() {
-             const slidesContainer = document.getElementById('carouselSlides');
-             const loader = document.getElementById('carouselLoader');
-             
-             // Fallback images if API fails
-             const fallbackMedia = [
+            const slidesContainer = document.getElementById('carouselSlides');
+            const loader = document.getElementById('carouselLoader');
+
+            // Fallback images if API fails
+            const fallbackMedia = [
                 { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000' },
                 { url: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000' },
                 { url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000' }
-             ];
+            ];
 
-             if (SCRIPT_URL && SCRIPT_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
+            if (SCRIPT_URL && SCRIPT_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
                 try {
                     const response = await fetch(`${SCRIPT_URL}?type=iframe`);
                     const data = await response.json();
@@ -1176,23 +1745,23 @@
                     } else {
                         mediaData = fallbackMedia;
                     }
-                } catch (e) { 
-                    console.error("Slider fetch failed", e); 
+                } catch (e) {
+                    console.error("Slider fetch failed", e);
                     mediaData = fallbackMedia;
                 }
-             } else {
-                 mediaData = fallbackMedia;
-             }
-             
-             if(loader) loader.classList.add('hidden');
-             renderCarousel();
+            } else {
+                mediaData = fallbackMedia;
+            }
+
+            if (loader) loader.classList.add('hidden');
+            renderCarousel();
         }
 
         function renderCarousel() {
             const container = document.getElementById('carouselSlides');
-            if(!container) return;
+            if (!container) return;
             container.innerHTML = '';
-            
+
             mediaData.forEach((item, index) => {
                 // Wrapper Div
                 const slideWrapper = document.createElement('div');
@@ -1208,7 +1777,7 @@
                 const img = document.createElement('img');
                 img.src = item.url;
                 img.className = "absolute inset-0 w-full h-full object-contain relative z-10";
-                
+
                 slideWrapper.appendChild(bgImg);
                 slideWrapper.appendChild(img);
                 container.appendChild(slideWrapper);
@@ -1217,10 +1786,10 @@
             startAutoSlide();
         }
 
-        window.moveSlide = function(step) {
+        window.moveSlide = function (step) {
             clearInterval(autoSlideInterval);
             const slides = document.querySelectorAll('#carouselSlides > div'); // Changed selector to target DIVs
-            if(slides.length === 0) return;
+            if (slides.length === 0) return;
 
             // Hide current
             slides[currentSlide].classList.remove('carousel-enhanced-active');
@@ -1244,27 +1813,27 @@
         }
         // -------------------------
 
-        window.deleteImage = function(index) { 
-            let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || []; 
-            gallery.splice(index, 1); 
-            localStorage.setItem('quantaGallery', JSON.stringify(gallery)); 
-            loadGallery(); 
-            if(isAdmin) renderAdminGallery(); 
+        window.deleteImage = function (index) {
+            let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
+            gallery.splice(index, 1);
+            localStorage.setItem('quantaGallery', JSON.stringify(gallery));
+            loadGallery();
+            if (isAdmin) renderAdminGallery();
         }
 
-        window.clearRequests = function() { localStorage.removeItem('quantaRequests'); loadRequests(); }
-        
-        document.addEventListener('DOMContentLoaded', () => { 
-            loadRequests(); 
+        window.clearRequests = function () { localStorage.removeItem('quantaRequests'); loadRequests(); }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            loadRequests();
             loadGallery();
             loadMediaCarousel(); // Initializing new slider
             const btn = document.getElementById('mobile-menu-btn');
-            if (btn) btn.onclick = window.toggleMenu; 
-            
+            if (btn) btn.onclick = window.toggleMenu;
+
             // Audio Animations Trigger
             const audio = document.getElementById('mainAudio');
             const audioContainer = document.getElementById('audioContainer');
-            if(audio && audioContainer) {
+            if (audio && audioContainer) {
                 audio.addEventListener('play', () => audioContainer.classList.add('is-playing'));
                 audio.addEventListener('pause', () => audioContainer.classList.remove('is-playing'));
                 audio.addEventListener('ended', () => audioContainer.classList.remove('is-playing'));
@@ -1272,4 +1841,5 @@
         });
     </script>
 </body>
+
 </html>
