@@ -565,6 +565,52 @@
         .dark audio::-webkit-media-controls-time-remaining-display {
             color: #cbd5e1;
         }
+
+        /* --- MOBILE RESPONSIVE UI CORRECTIONS --- */
+        @media (max-width: 768px) {
+
+            /* Ensure the profile icon in the header is always on top */
+            #userProfileArea {
+                position: relative;
+                z-index: 1001 !important;
+                display: flex !important;
+            }
+
+            /* Make the dropdown float properly over the menu */
+            #userDropdown {
+                position: absolute !important;
+                top: 60px !important;
+                right: 0 !important;
+                width: 220px !important;
+                z-index: 1002 !important;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+            }
+        }
+
+        #loggedInMobile .flex-1 {
+            min-width: 0;
+            /* Prevents text from pushing buttons off screen */
+        }
+
+        #loggedInMobile button {
+            flex-shrink: 0;
+            /* Prevents buttons from squishing */
+        }
+
+        /* Mobile User Card Styling */
+        #loggedInMobile .grid button {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dark #loggedInMobile .grid button {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        #loggedInMobile button:active {
+            transform: scale(0.9);
+            background: rgba(59, 130, 246, 0.2);
+        }
     </style>
 </head>
 
@@ -603,6 +649,68 @@
                     class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition relative py-1 after:content-[''] after:absolute after:w-0 after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0 after:transition-all hover:after:w-full">About
                     Us</a>
 
+
+
+
+                <div class="flex items-center gap-3 mr-2">
+                    <button id="loginBtn" onclick="toggleAuthModal()"
+                        class="px-4 py-2 rounded-full bg-blue-600 hover:bg-blue-500 text-white text-[10px] font-bold transition shadow-lg whitespace-nowrap">
+                        <i class="fas fa-user-circle mr-1"></i> LOGIN
+                    </button>
+
+                    <div id="userProfileArea" class="hidden relative group">
+                        <div class="flex items-center gap-3 cursor-pointer p-1 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-all"
+                            onclick="window.toggleUserDropdown()">
+                            <div class="relative">
+                                <img id="navUserImg" src=""
+                                    class="w-10 h-10 rounded-full border-2 border-blue-500 object-cover shadow-sm">
+                                <div
+                                    class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white dark:border-slate-900 rounded-full">
+                                </div>
+                            </div>
+                            <div class="hidden lg:block text-left">
+                                <p id="navUserName" class="text-[11px] font-bold dark:text-white leading-none">User</p>
+                                <p class="text-[9px] text-slate-500 font-bold uppercase tracking-tighter">My Account <i
+                                        class="fas fa-chevron-down ml-1"></i></p>
+                            </div>
+                        </div>
+
+                        <div id="userDropdown"
+                            class="hidden absolute right-0 mt-3 w-52 bg-white dark:bg-[#0f172a] rounded-2xl shadow-2xl border border-slate-100 dark:border-white/10 overflow-hidden z-[500] animate-scale-in">
+                            <div class="p-4 border-b dark:border-white/10 bg-slate-50/50 dark:bg-white/5">
+                                <p class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-1">Active
+                                    Session</p>
+                                <p id="dropUserEmail" class="text-xs font-bold dark:text-white truncate">
+                                    email@example.com</p>
+                            </div>
+                            <div class="p-2 space-y-1">
+                                <button onclick="window.openEditProfile()"
+                                    class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-orange-50 dark:hover:bg-orange-900/20 hover:text-orange-600 rounded-xl transition-all flex items-center gap-3">
+                                    <i class="fas fa-user-edit w-4"></i> Edit Profile
+                                </button>
+                                <button onclick="window.openChangePassword()"
+                                    class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 rounded-xl transition-all flex items-center gap-3">
+                                    <i class="fas fa-shield-alt w-4"></i> Security Settings
+                                </button>
+                                <button onclick="window.triggerProfileUpdate()"
+                                    class="w-full text-left px-4 py-2.5 text-xs font-bold text-slate-600 dark:text-slate-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 rounded-xl transition-all flex items-center gap-3">
+                                    <i class="fas fa-camera w-4"></i> Update Photo
+                                </button>
+                                <div class="h-px bg-slate-100 dark:bg-white/10 my-1"></div>
+                                <button onclick="window.logout()"
+                                    class="w-full text-left px-4 py-2.5 text-xs font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-500/10 rounded-xl transition-all flex items-center gap-3">
+                                    <i class="fas fa-sign-out-alt w-4"></i> Logout Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <input type="file" id="navProfileUpdateInput" accept="image/*" class="hidden"
+                        onchange="window.uploadNewProfilePic(this)">
+
+                </div>
+
+
                 <button onclick="toggleTheme()"
                     class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/20 backdrop-blur-md border border-slate-300 dark:border-white/10 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:scale-110 shadow-sm hover:bg-slate-300 dark:hover:bg-white/40">
                     <i class="fas fa-moon dark:hidden"></i>
@@ -621,6 +729,72 @@
         <div id="mobile-menu"
             class="hidden md:hidden glass border-2 border-slate-200 dark:border-gray-700 mt-2 mx-auto w-full rounded-2xl shadow-2xl transform origin-top transition-all duration-300 overflow-hidden">
             <div class="flex flex-col p-4 space-y-3">
+
+
+                <div id="mobileUserStatus">
+                    <div id="loggedOutMobile" class="grid grid-cols-2 gap-3 mb-2">
+                        <button onclick="toggleAuthModal(); switchAuth('login'); toggleMenu();"
+                            class="flex items-center justify-center gap-2 p-3 rounded-xl bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-200 font-bold text-[11px] uppercase tracking-tighter transition-all active:scale-95">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+                        <button onclick="toggleAuthModal(); switchAuth('signup'); toggleMenu();"
+                            class="flex items-center justify-center gap-2 p-3 rounded-xl bg-blue-600 text-white font-bold text-[11px] uppercase tracking-tighter shadow-lg transition-all active:scale-95">
+                            <i class="fas fa-user-plus"></i> Signup
+                        </button>
+                    </div>
+
+                    <div id="loggedInMobile"
+                        class="hidden flex-col gap-4 p-4 rounded-[2rem] bg-blue-500/10 border border-blue-500/20 mb-4 transition-all animate-fade-in">
+                        <div class="flex items-center gap-4">
+                            <img id="mobileNavImg" src=""
+                                class="w-12 h-12 rounded-full border-2 border-blue-500 object-cover shadow-md">
+                            <div class="flex-1 overflow-hidden">
+                                <p id="mobileNavName" class="text-sm font-bold dark:text-white leading-none truncate">
+                                    User</p>
+                                <p id="mobileNavEmail" class="text-[11px] text-blue-500 truncate mt-1">email@example.com
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-4 gap-2 pt-2 border-t border-blue-500/10">
+                            <button onclick="window.openEditProfile(); toggleMenu();"
+                                class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-orange-500/20 transition-all group">
+                                <i class="fas fa-pencil-alt text-orange-500 text-sm"></i>
+                                <span
+                                    class="text-[8px] font-bold uppercase text-slate-500 dark:text-slate-400">Name</span>
+                            </button>
+
+                            <button onclick="window.openChangePassword(); toggleMenu();"
+                                class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-blue-500/20 transition-all group">
+                                <i class="fas fa-shield-alt text-blue-500 text-sm"></i>
+                                <span
+                                    class="text-[8px] font-bold uppercase text-slate-500 dark:text-slate-400">Security</span>
+                            </button>
+
+                            <button onclick="window.triggerProfileUpdate(); toggleMenu();"
+                                class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-emerald-500/20 transition-all group">
+                                <i class="fas fa-camera text-emerald-500 text-sm"></i>
+                                <span
+                                    class="text-[8px] font-bold uppercase text-slate-500 dark:text-slate-400">Photo</span>
+                            </button>
+
+                            <button onclick="window.logout()"
+                                class="flex flex-col items-center gap-1 p-2 rounded-xl hover:bg-red-500/20 transition-all group">
+                                <i class="fas fa-sign-out-alt text-red-500 text-sm"></i>
+                                <span
+                                    class="text-[8px] font-bold uppercase text-slate-500 dark:text-slate-400">Exit</span>
+                            </button>
+
+                        </div>
+                        <div class="text-center mt-0.5 pt-0.5 border-t border-blue-500/5">
+                            <p class="text-[9px] font-bold text-red-500/50 uppercase tracking-widest animate-pulse">
+                                <i class="fas fa-info-circle mr-1"></i> you can edit your account.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
                 <a href="#home"
                     class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium"
                     onclick="toggleMenu()">Mission</a>
@@ -649,6 +823,8 @@
                 </div>
             </div>
         </div>
+
+
     </nav>
 
     <section id="home" class="min-h-screen pt-32 pb-16 px-4 flex items-center overflow-hidden relative">
@@ -3198,14 +3374,53 @@
         </div>
     </div>
 
+
     <script>
-        // DOM Readiness Helper
+        // --- CONFIGURATION ---
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz9zKaQM9pibCwgy7r-BeRmZO5ldJemEMElt1GAmcDgnT-PJkBkKP7cy45UeD_dGOVR4A/exec';
+
+        // --- NEW: COOL TOAST NOTIFICATIONS ---
+        window.showToast = function (message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `fixed bottom-5 right-5 px-6 py-3 rounded-2xl shadow-2xl transform transition-all duration-500 translate-y-20 opacity-0 z-[10000] flex items-center gap-3 font-bold text-sm backdrop-blur-md border border-white/20`;
+
+            const bgColor = type === 'success' ? 'bg-emerald-500/90 text-white' : 'bg-red-500/90 text-white';
+            const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+
+            toast.classList.add(...bgColor.split(' '));
+            toast.innerHTML = `<i class="fas ${icon} animate-bounce"></i> <span>${message}</span>`;
+
+            document.body.appendChild(toast);
+            setTimeout(() => toast.classList.remove('translate-y-20', 'opacity-0'), 100);
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                setTimeout(() => toast.remove(), 500);
+            }, 4000);
+        };
+
+
+        // --- GLOBAL STATE ---
+        let currentOpenCategory = null;
+        let isAdmin = false;
+        let selectedProfileBase64 = "";
+        let isResetCooldown = false;
+        let currentSlide = 0;
+        let mediaData = [];
+        let autoSlideInterval;
+
+        const staticImages = [
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000',
+            'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000',
+            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000',
+            'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000'
+        ];
+
+        // --- DOM READINESS & THEME ---
         function safeSetHTML(id, content) {
             const el = document.getElementById(id);
             if (el) el.innerHTML = content;
         }
 
-        // Theme
         window.toggleTheme = function () {
             const html = document.documentElement;
             if (html.classList.contains('dark')) {
@@ -3220,7 +3435,6 @@
             document.documentElement.classList.add('dark');
         }
 
-        // Nav Scroll
         window.onscroll = function () {
             const nav = document.getElementById('navbar');
             if (nav) {
@@ -3229,48 +3443,12 @@
             }
         };
 
-        // Subgrid Data
+        // --- SUBGRID DATA (UNTOUCHED) ---
         const subServiceData = {
-            'web': {
-                title: 'Web Solutions', items: [
-                    { icon: 'fa-shopping-cart', name: 'Shopkeeper Site', color: 'text-blue-500' },
-                    { icon: 'fa-user-graduate', name: 'Student Portfolio', color: 'text-green-500' },
-                    { icon: 'fa-rocket', name: 'Landing Page', color: 'text-orange-500' },
-                    { icon: 'fa-store', name: 'E-commerce Hub', color: 'text-purple-500' },
-                    { icon: 'fa-school', name: 'Edu Portal', color: 'text-cyan-500' },
-                    { icon: 'fa-code', name: 'Custom Dev', color: 'text-indigo-500' }
-                ]
-            },
-            'assets': {
-                title: 'Digital Assets', items: [
-                    { icon: 'fa-utensils', name: 'Digital Menu', color: 'text-cyan-500' },
-                    { icon: 'fa-book-open', name: 'Product Catalog', color: 'text-blue-400' },
-                    { icon: 'fa-images', name: 'Property Gallery', color: 'text-emerald-500' },
-                    { icon: 'fa-qrcode', name: 'Smart QR Codes', color: 'text-blue-600' },
-                    { icon: 'fa-id-badge', name: 'Digital V-Card', color: 'text-red-500' },
-                    { icon: 'fa-file-pdf', name: 'Digital Brochure', color: 'text-orange-500' }
-                ]
-            },
-            'identity': {
-                title: 'Brand Identity', items: [
-                    { icon: 'fa-map-marker-alt', name: 'Google Maps', color: 'text-gray-700' },
-                    { icon: 'fa-paint-brush', name: 'Logo Design', color: 'text-pink-500' },
-                    { icon: 'fa-hashtag', name: 'Social Setup', color: 'text-blue-400' },
-                    { icon: 'fa-envelope', name: 'Pro Email', color: 'text-green-600' },
-                    { icon: 'fa-address-card', name: 'Biz Profile', color: 'text-indigo-400' },
-                    { icon: 'fa-ad', name: 'Ad Creatives', color: 'text-red-600' }
-                ]
-            },
-            'support': {
-                title: 'Tech Support', items: [
-                    { icon: 'fa-sync', name: 'Site Updates', color: 'text-yellow-600' },
-                    { icon: 'fa-server', name: 'Hosting Setup', color: 'text-gray-400' },
-                    { icon: 'fa-lock', name: 'SSL Integration', color: 'text-blue-400' },
-                    { icon: 'fa-bug', name: 'Bug Fixing', color: 'text-yellow-500' },
-                    { icon: 'fa-tachometer-alt', name: 'Speed Opt', color: 'text-cyan-400' },
-                    { icon: 'fa-exchange-alt', name: 'Domain Move', color: 'text-red-500' }
-                ]
-            }
+            'web': { title: 'Web Solutions', items: [{ icon: 'fa-shopping-cart', name: 'Shopkeeper Site', color: 'text-blue-500' }, { icon: 'fa-user-graduate', name: 'Student Portfolio', color: 'text-green-500' }, { icon: 'fa-rocket', name: 'Landing Page', color: 'text-orange-500' }, { icon: 'fa-store', name: 'E-commerce Hub', color: 'text-purple-500' }, { icon: 'fa-school', name: 'Edu Portal', color: 'text-cyan-500' }, { icon: 'fa-code', name: 'Custom Dev', color: 'text-indigo-500' }] },
+            'assets': { title: 'Digital Assets', items: [{ icon: 'fa-utensils', name: 'Digital Menu', color: 'text-cyan-500' }, { icon: 'fa-book-open', name: 'Product Catalog', color: 'text-blue-400' }, { icon: 'fa-images', name: 'Property Gallery', color: 'text-emerald-500' }, { icon: 'fa-qrcode', name: 'Smart QR Codes', color: 'text-blue-600' }, { icon: 'fa-id-badge', name: 'Digital V-Card', color: 'text-red-500' }, { icon: 'fa-file-pdf', name: 'Digital Brochure', color: 'text-orange-500' }] },
+            'identity': { title: 'Brand Identity', items: [{ icon: 'fa-map-marker-alt', name: 'Google Maps', color: 'text-gray-700' }, { icon: 'fa-paint-brush', name: 'Logo Design', color: 'text-pink-500' }, { icon: 'fa-hashtag', name: 'Social Setup', color: 'text-blue-400' }, { icon: 'fa-envelope', name: 'Pro Email', color: 'text-green-600' }, { icon: 'fa-address-card', name: 'Biz Profile', color: 'text-indigo-400' }, { icon: 'fa-ad', name: 'Ad Creatives', color: 'text-red-600' }] },
+            'support': { title: 'Tech Support', items: [{ icon: 'fa-sync', name: 'Site Updates', color: 'text-yellow-600' }, { icon: 'fa-server', name: 'Hosting Setup', color: 'text-gray-400' }, { icon: 'fa-lock', name: 'SSL Integration', color: 'text-blue-400' }, { icon: 'fa-bug', name: 'Bug Fixing', color: 'text-yellow-500' }, { icon: 'fa-tachometer-alt', name: 'Speed Opt', color: 'text-cyan-400' }, { icon: 'fa-exchange-alt', name: 'Domain Move', color: 'text-red-500' }] }
         };
 
         window.toggleSubGrid = function (category, element) {
@@ -3308,180 +3486,37 @@
             allCards.forEach(card => card.classList.remove('active'));
         }
 
+
+        // 1. Logic to open Password Modal (Ensure it matches your existing modal ID)
+        window.openChangePassword = function () {
+            // If you have a specific modal for this, show it here
+            // For now, using your logic:
+            const modal = document.getElementById('passwordModal'); // Or your password change function
+            if (modal) modal.classList.remove('hidden');
+            else showToast("Security settings opening...", "success");
+        };
+
+        // 2. Logic to trigger File Input for Photo
+        window.triggerProfileUpdate = function () {
+            const fileInput = document.getElementById('navProfileUpdateInput');
+            if (fileInput) fileInput.click();
+        };
+
+        // 3. Update toggleMenu to be clean
         window.toggleMenu = function () {
             const menu = document.getElementById('mobile-menu');
             if (menu) menu.classList.toggle('hidden');
-        }
+        };
 
-        function loadRequests() {
-            const list = document.getElementById('requestList');
-            if (!list) return;
-            let requests = JSON.parse(localStorage.getItem('quantaRequests')) || [];
-            list.innerHTML = requests.length ? '' : `<div class="col-span-full text-center py-6 text-slate-400">No history</div>`;
-            requests.forEach((req) => {
-                const item = document.createElement('div');
-                item.className = "bg-white/80 dark:bg-darkCard/80 p-4 rounded-xl border border-slate-200";
-                item.innerHTML = `<h5 class="font-bold text-sm">${req.service}</h5><p class="text-xs text-slate-500">${req.date}</p>`;
-                list.appendChild(item);
-            });
-        }
-
-        let isAdmin = false;
-        let currentOpenCategory = null;
-        const staticImages = [
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000',
-            'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000',
-            'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000',
-            'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000'
-        ];
-
-        // ********************************************
-
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxk3z5jz_AREkLvokLNi0Q45Kg_CP6BZAIpaWbqyq_y0Q_uT1d3yHCR5DvEQwBrMZ72/exec';
-        // ********************************************
-
-        window.openPasswordModal = function () { document.getElementById('passwordModal').classList.remove('hidden'); }
-        window.checkPassword = function () {
-            const inputPass = document.getElementById('adminPassword').value;
-            if (inputPass === '6022@#') {
-                isAdmin = true;
-                document.getElementById('uploadModal').classList.remove('hidden');
-                document.getElementById('passwordModal').classList.add('hidden');
-                loadGallery();
-                renderAdminGallery();
-            }
-        }
-
-        window.closeAdmin = function () { isAdmin = false; document.getElementById('uploadModal').classList.add('hidden'); loadGallery(); }
-
-        window.previewImage = function (input) {
-            if (input.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const prev = document.getElementById('imagePreview');
-                    if (prev) { prev.classList.remove('hidden'); prev.innerHTML = `<img src="${e.target.result}" class="w-full h-full object-cover">`; }
-                };
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
-
-        window.uploadImage = function () {
-            const input = document.getElementById('imageInput');
-            if (!input || !input.files[0]) return;
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                // In a real app, you would POST to your backend here
-                // For this static demo, we use LocalStorage
-                let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
-                gallery.unshift(e.target.result);
-                localStorage.setItem('quantaGallery', JSON.stringify(gallery));
-                loadGallery();
-                renderAdminGallery();
-            };
-            reader.readAsDataURL(input.files[0]);
-        }
-
-        window.renderAdminGallery = function () {
-            const grid = document.getElementById('adminGalleryGrid');
-            if (!grid) return;
-            let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
-            grid.innerHTML = '';
-            gallery.forEach((img, index) => {
-                grid.innerHTML += `<div class="relative aspect-square"><img src="${img}" class="w-full h-full object-cover rounded-lg border dark:border-gray-700"><button onclick="window.deleteImage(${index})" class="absolute top-1 right-1 bg-red-500 text-white p-1 rounded-full"><i class="fas fa-trash text-[10px]"></i></button></div>`;
-            });
-        }
-
-        // Updated Load Gallery to fetch from Google Apps Script
-        async function loadGallery() {
-            const grid = document.getElementById('galleryGrid');
-            if (!grid) return;
-
-            // NEW: Feature to open the full screen view
-            const openFullView = (url) => {
-                const modal = document.getElementById('imageLightbox');
-                const modalImg = document.getElementById('lightboxImg');
-                modalImg.src = url;
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            };
-
-            // 1. ORIGINAL FEATURE: Fetch dynamically from Google Drive (AppScript)
-            if (SCRIPT_URL && SCRIPT_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
-                try {
-                    const response = await fetch(`${SCRIPT_URL}?type=gallery`);
-                    const data = await response.json();
-                    if (data.status === 'success' && data.media.length > 0) {
-                        grid.innerHTML = '';
-                        data.media.reverse().forEach((item, index) => {
-                            const div = document.createElement('div');
-                            div.className = 'gallery-item animate-fade-in cursor-pointer group';
-                            div.style.animationDelay = `${index * 0.1}s`;
-                            div.innerHTML = `<img src="${item.url}" loading="lazy" alt="Gallery Item" class="transition-transform duration-500 group-hover:scale-105">`;
-                            div.onclick = () => openFullView(item.url); // Added Click
-                            grid.appendChild(div);
-                        });
-                        return;
-                    }
-                } catch (e) { console.error("Gallery fetch failed", e); }
-            }
-
-            // 2. ORIGINAL FEATURE: Fallback to LocalStorage/Static
-            let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
-            grid.innerHTML = '';
-
-            staticImages.forEach(img => {
-                const div = document.createElement('div');
-                div.className = 'gallery-item animate-fade-in cursor-pointer group';
-                div.innerHTML = `<img src="${img}" alt="Portfolio Item" loading="lazy" class="transition-transform duration-500 group-hover:scale-105">`;
-                div.onclick = () => openFullView(img); // Added Click
-                grid.appendChild(div);
-            });
-
-            gallery.forEach((img, index) => {
-                const div = document.createElement('div');
-                div.className = 'gallery-item animate-fade-in cursor-pointer group';
-                div.innerHTML = `
-                    <img src="${img}" loading="lazy" class="transition-transform duration-500 group-hover:scale-105">
-                    ${isAdmin ? `<button class="delete-btn" onclick="event.stopPropagation(); window.deleteImage(${index})"><i class="fas fa-trash"></i></button>` : ''}
-                `;
-                div.onclick = () => openFullView(img); // Added Click
-                grid.appendChild(div);
-            });
-        }
-
-        // --- NEW SLIDER LOGIC ---
-        let currentSlide = 0;
-        let mediaData = [];
-        let autoSlideInterval;
-
+        // --- CAROUSEL & GALLERY LOGIC ---
         async function loadMediaCarousel() {
-            const slidesContainer = document.getElementById('carouselSlides');
             const loader = document.getElementById('carouselLoader');
-
-            // Fallback images if API fails
-            const fallbackMedia = [
-                { url: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000' },
-                { url: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000' },
-                { url: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000' }
-            ];
-
-            if (SCRIPT_URL && SCRIPT_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
-                try {
-                    const response = await fetch(`${SCRIPT_URL}?type=iframe`);
-                    const data = await response.json();
-                    if (data.status === 'success' && data.media.length > 0) {
-                        mediaData = data.media;
-                    } else {
-                        mediaData = fallbackMedia;
-                    }
-                } catch (e) {
-                    console.error("Slider fetch failed", e);
-                    mediaData = fallbackMedia;
-                }
-            } else {
-                mediaData = fallbackMedia;
-            }
-
+            const fallbackMedia = staticImages.map(url => ({ url }));
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=iframe`);
+                const data = await response.json();
+                mediaData = (data.status === 'success' && data.media.length > 0) ? data.media : fallbackMedia;
+            } catch (e) { mediaData = fallbackMedia; }
             if (loader) loader.classList.add('hidden');
             renderCarousel();
         }
@@ -3490,85 +3525,555 @@
             const container = document.getElementById('carouselSlides');
             if (!container) return;
             container.innerHTML = '';
-
             mediaData.forEach((item, index) => {
-                // Wrapper Div
                 const slideWrapper = document.createElement('div');
                 slideWrapper.className = `absolute inset-0 w-full h-full overflow-hidden ${index === 0 ? 'carousel-enhanced-active' : 'carousel-enhanced-inactive'}`;
-                slideWrapper.setAttribute('data-index', index);
-
-                // 1. Blurred Background Image (Dynamic Color)
-                const bgImg = document.createElement('div');
-                bgImg.style.backgroundImage = `url(${item.url})`;
-                bgImg.className = "absolute inset-0 w-full h-full bg-cover bg-center blur-xl scale-110 opacity-60"; // Blur effect
-
-                // 2. Main Foreground Image (Object Contain)
-                const img = document.createElement('img');
-                img.src = item.url;
-                img.className = "absolute inset-0 w-full h-full object-contain relative z-10";
-
-                slideWrapper.appendChild(bgImg);
-                slideWrapper.appendChild(img);
+                slideWrapper.innerHTML = `
+                <div style="background-image: url(${item.url})" class="absolute inset-0 w-full h-full bg-cover bg-center blur-xl scale-110 opacity-60"></div>
+                <img src="${item.url}" class="absolute inset-0 w-full h-full object-contain relative z-10">
+            `;
                 container.appendChild(slideWrapper);
             });
-
             startAutoSlide();
         }
 
         window.moveSlide = function (step) {
             clearInterval(autoSlideInterval);
-            const slides = document.querySelectorAll('#carouselSlides > div'); // Changed selector to target DIVs
+            const slides = document.querySelectorAll('#carouselSlides > div');
             if (slides.length === 0) return;
-
-            // Hide current
-            slides[currentSlide].classList.remove('carousel-enhanced-active');
-            slides[currentSlide].classList.add('carousel-enhanced-inactive');
-
-            // Update index
+            slides[currentSlide].classList.replace('carousel-enhanced-active', 'carousel-enhanced-inactive');
             currentSlide = (currentSlide + step + slides.length) % slides.length;
-
-            // Show new
-            slides[currentSlide].classList.remove('carousel-enhanced-inactive');
-            slides[currentSlide].classList.add('carousel-enhanced-active');
-
+            slides[currentSlide].classList.replace('carousel-enhanced-inactive', 'carousel-enhanced-active');
             startAutoSlide();
         }
 
         function startAutoSlide() {
             clearInterval(autoSlideInterval);
-            autoSlideInterval = setInterval(() => {
-                window.moveSlide(1);
-            }, 15000); // 15 seconds auto slide
-        }
-        // -------------------------
-
-        window.deleteImage = function (index) {
-            let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
-            gallery.splice(index, 1);
-            localStorage.setItem('quantaGallery', JSON.stringify(gallery));
-            loadGallery();
-            if (isAdmin) renderAdminGallery();
+            autoSlideInterval = setInterval(() => { window.moveSlide(1); }, 15000);
         }
 
-        window.clearRequests = function () { localStorage.removeItem('quantaRequests'); loadRequests(); }
+        async function loadGallery() {
+            const grid = document.getElementById('galleryGrid');
+            if (!grid) return;
+            const openFullView = (url) => {
+                const modal = document.getElementById('imageLightbox');
+                const modalImg = document.getElementById('lightboxImg');
+                if (modal && modalImg) { modalImg.src = url; modal.classList.remove('hidden'); modal.classList.add('flex'); }
+            };
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=gallery`);
+                const data = await response.json();
+                if (data.status === 'success' && data.media.length > 0) {
+                    grid.innerHTML = '';
+                    data.media.reverse().forEach((item) => {
+                        const div = document.createElement('div');
+                        div.className = 'gallery-item animate-fade-in cursor-pointer group';
+                        div.innerHTML = `<img src="${item.url}" loading="lazy" class="transition-transform duration-500 group-hover:scale-105">`;
+                        div.onclick = () => openFullView(item.url);
+                        grid.appendChild(div);
+                    });
+                    return;
+                }
+            } catch (e) { console.error("Gallery failed", e); }
+            grid.innerHTML = '';
+            staticImages.forEach(img => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item animate-fade-in cursor-pointer group';
+                div.innerHTML = `<img src="${img}" loading="lazy" class="transition-transform duration-500 group-hover:scale-105">`;
+                div.onclick = () => openFullView(img);
+                grid.appendChild(div);
+            });
+        }
+
+        // --- ADMIN & AUTHENTICATION (FIXED FOR GITHUB/URL) ---
+        window.openPasswordModal = function () { document.getElementById('passwordModal').classList.remove('hidden'); }
+        window.checkPassword = function () {
+            if (document.getElementById('adminPassword').value === '6022@#') {
+                isAdmin = true;
+                document.getElementById('uploadModal').classList.remove('hidden');
+                document.getElementById('passwordModal').classList.add('hidden');
+                loadGallery();
+            }
+        }
+
+        window.toggleAuthModal = () => document.getElementById('authModal').classList.toggle('hidden');
+
+        window.switchAuth = (type) => {
+            const isLogin = type === 'login';
+            document.getElementById('loginForm').classList.toggle('hidden', !isLogin);
+            document.getElementById('signupForm').classList.toggle('hidden', isLogin);
+        };
+
+        window.previewAuthProfile = (input) => {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    document.getElementById('profilePreview').src = e.target.result;
+                    document.getElementById('profilePreview').classList.remove('hidden');
+                    document.getElementById('profileIcon').classList.add('hidden');
+                    selectedProfileBase64 = e.target.result;
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        };
+
+        // --- UNIVERSAL FETCH METHODS FOR AUTH ---
+
+        // --- STRENGTH INDICATOR ---
+        window.checkStrength = (p) => {
+            const bar = document.getElementById('strengthBar');
+            const text = document.getElementById('strengthText');
+            let s = 0;
+            if (p.length > 5) s += 25;
+            if (/[A-Z]/.test(p)) s += 25;
+            if (/[0-9]/.test(p)) s += 25;
+            if (/[^A-Za-z0-9]/.test(p)) s += 25;
+            bar.style.width = s + '%';
+            bar.className = `h-full transition-all ${s < 50 ? 'bg-red-500' : s < 100 ? 'bg-yellow-500' : 'bg-emerald-500'}`;
+            text.innerText = s < 50 ? 'Weak' : s < 100 ? 'Moderate' : 'Strong';
+            text.className = `text-[10px] font-bold uppercase mt-1 ${s < 50 ? 'text-red-500' : s < 100 ? 'text-yellow-500' : 'text-emerald-500'}`;
+        };
+
+        // --- UPDATED SIGNUP ---
+        window.submitSignup = async () => {
+            const btn = document.getElementById('signupBtnSubmit');
+            const data = {
+                action: "signup",
+                username: document.getElementById('regName').value,
+                email: document.getElementById('regEmail').value,
+                password: document.getElementById('regPass').value,
+                image: selectedProfileBase64
+            };
+            if (!data.username || !data.email || !data.password) return showToast("Fill all fields", "error");
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> CREATING...';
+            try {
+                // We use standard fetch without no-cors to read the response message
+                const res = await fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify(data) });
+                const result = await res.json();
+                if (result.success) {
+                    showToast(result.message, "success");
+                    switchAuth('login');
+                } else {
+                    showToast(result.message, "error");
+                }
+            } catch (e) { showToast("Network Error", "error"); }
+            btn.innerText = "Create Account";
+        };
+
+
+        // --- 1. TOGGLE DROPDOWN MENU ---
+        window.toggleUserDropdown = function (event) {
+            if (event) event.stopPropagation();
+
+            const dropdown = document.getElementById('userDropdown');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            // If opening dropdown, close the hamburger menu first to avoid overlap
+            if (dropdown.classList.contains('hidden')) {
+                if (mobileMenu) mobileMenu.classList.add('hidden');
+                dropdown.classList.remove('hidden');
+            } else {
+                dropdown.classList.add('hidden');
+            }
+        };
+
+        // --- 2. TRIGGER FILE SELECTOR ---
+        window.triggerProfileUpdate = () => document.getElementById('navProfileUpdateInput').click();
+
+        // --- 3. UPLOAD PROFILE PICTURE LOGIC ---
+        window.uploadNewProfilePic = async (input) => {
+            if (!input.files || !input.files[0]) return;
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+
+            window.showToast("Uploading Image...", "success");
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64 = e.target.result;
+                try {
+                    const res = await fetch(SCRIPT_URL, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            action: "updateProfilePic",
+                            email: session.email,
+                            image: base64
+                        })
+                    });
+                    const result = await res.json();
+                    if (result.success) {
+                        window.showToast("Profile Picture Updated!", "success");
+                        session.profileImg = result.newUrl;
+                        localStorage.setItem('quanta_session', JSON.stringify(session));
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        window.showToast(result.message, "error");
+                    }
+                } catch (err) { window.showToast("Upload Failed", "error"); }
+            };
+            reader.readAsDataURL(input.files[0]);
+        };
+
+        // --- 4. EDIT NAME (PROFILE INFO) UI ---
+        window.openEditProfile = function () {
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+            const modal = document.createElement('div');
+            modal.id = "editProfileModal";
+            modal.className = "fixed inset-0 z-[11000] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm";
+            modal.innerHTML = `
+            <div class="bg-white dark:bg-[#0f172a] w-full max-w-sm rounded-3xl p-8 shadow-2xl animate-fade-in border border-white/10">
+                <div class="text-center mb-6">
+                    <h3 class="text-lg font-bold dark:text-white">Edit Profile</h3>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Update your account information</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-left">
+                        <label class="text-[10px] font-bold text-slate-500 ml-1">DISPLAY NAME</label>
+                        <input type="text" id="newName" value="${session.username}" class="w-full px-4 py-3 rounded-xl dark:bg-slate-800 border dark:border-gray-700 dark:text-white outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+                    </div>
+                    <button id="saveNameBtn" onclick="submitProfileUpdate()" class="w-full bg-orange-500 text-white py-3 rounded-xl font-bold shadow-lg active:scale-95 transition-all">Save Changes</button>
+                    <button onclick="document.getElementById('editProfileModal').remove()" class="w-full text-xs font-bold text-slate-400 mt-2">Cancel</button>
+                </div>
+            </div>
+        `;
+            document.body.appendChild(modal);
+        };
+
+        // --- 5. SUBMIT NAME UPDATE ---
+        window.submitProfileUpdate = async function () {
+            const newName = document.getElementById('newName').value;
+            const btn = document.getElementById('saveNameBtn');
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+
+            if (!newName) return window.showToast("Name cannot be empty", "error");
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> Saving...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        action: "updateProfileData",
+                        email: session.email,
+                        username: newName
+                    })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    window.showToast("Name Updated!", "success");
+                    session.username = newName;
+                    localStorage.setItem('quanta_session', JSON.stringify(session));
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    window.showToast(result.message, "error");
+                    btn.disabled = false;
+                }
+            } catch (err) { window.showToast("Error updating profile", "error"); }
+        };
+
+
+
+        // --- 1. LOGIN LOGIC ---
+        window.submitLogin = () => {
+            const email = document.getElementById('loginEmail').value;
+            const pass = document.getElementById('loginPass').value;
+            const btn = document.getElementById('loginBtnSubmit');
+
+            if (!email || !pass) return showToast("Enter email and password", "error");
+
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin mr-2"></i> VERIFYING...';
+            btn.disabled = true;
+
+            // Note: Using GET for login to match your doGet bridge
+            fetch(`${SCRIPT_URL}?type=login&email=${encodeURIComponent(email)}&pass=${encodeURIComponent(pass)}`)
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        showToast("Login Successful!", "success");
+                        localStorage.setItem('quanta_session', JSON.stringify(res));
+                        setTimeout(() => location.reload(), 1000);
+                    } else {
+                        showToast(res.message, "error");
+                        btn.innerText = "Access Dashboard";
+                        btn.disabled = false;
+                    }
+                }).catch(() => {
+                    showToast("Login Error: Check SCRIPT_URL", "error");
+                    btn.disabled = false;
+                    btn.innerText = "Access Dashboard";
+                });
+        };
+
+        // --- 2. FORGOT PASSWORD UI SWAP ---
+        window.forgotPass = function () {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.innerHTML = `
+        <div class="animate-fade-in space-y-4">
+            <div class="text-center mb-4">
+                <h4 class="font-bold dark:text-white text-lg font-serif">Reset Password</h4>
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest">A temporary PIN will be emailed to you</p>
+            </div>
+            <input type="email" id="resetEmail" placeholder="Registered Email" class="w-full px-4 py-3 rounded-xl dark:bg-slate-800 border dark:border-gray-600 dark:text-white outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="resetBtnSubmit" onclick="submitPasswordReset()" class="w-full bg-blue-600 text-white py-3.5 rounded-xl font-bold shadow-lg active:scale-95 transition-all">Send Temporary Password</button>
+            <button onclick="location.reload()" class="w-full text-xs font-bold text-slate-400 py-2">Back to Login</button>
+        </div>`;
+        };
+
+        // --- 3. SUBMIT PASSWORD RESET ---
+        window.submitPasswordReset = function () {
+            const email = document.getElementById('resetEmail').value;
+            const btn = document.getElementById('resetBtnSubmit');
+            if (!email) return showToast("Please enter email", "error");
+
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> SENDING...';
+            btn.disabled = true;
+
+            fetch(`${SCRIPT_URL}?type=reset&email=${encodeURIComponent(email)}`)
+                .then(res => res.json())
+                .then(res => {
+                    showToast(res.message, res.success ? "success" : "error");
+                    if (res.success) setTimeout(() => location.reload(), 3000);
+                    else {
+                        btn.innerHTML = "Send Temporary Password";
+                        btn.disabled = false;
+                    }
+                }).catch(() => {
+                    showToast("Request Failed", "error");
+                    btn.disabled = false;
+                });
+        };
+
+
+        // --- EDIT PROFILE UI & LOGIC ---
+        window.openEditProfile = function () {
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+            const modal = document.createElement('div');
+            modal.id = "editProfileModal";
+            // Set z-index to 20000 to ensure it's above the hamburger menu (which is usually around 1000)
+            modal.className = "fixed inset-0 z-[20000] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm";
+            modal.innerHTML = `
+    <div class="bg-white dark:bg-[#0f172a] w-full max-w-sm rounded-3xl p-8 shadow-2xl animate-fade-in border border-white/10">
+        <div class="text-center mb-6">
+            <h3 class="text-lg font-bold dark:text-white">Edit Account</h3>
+            <p class="text-[10px] text-slate-500 uppercase tracking-widest">Update your details</p>
+        </div>
+        <div class="space-y-4">
+            <div class="text-left">
+                <label class="text-[10px] font-bold text-slate-500 ml-1">NEW NAME</label>
+                <input type="text" id="newName" value="${session.username}" class="w-full px-4 py-3 rounded-xl dark:bg-slate-800 border dark:border-gray-700 dark:text-white outline-none focus:ring-2 focus:ring-orange-500 text-sm">
+            </div>
+            <button id="saveNameBtn" onclick="submitProfileUpdate()" class="w-full bg-orange-500 text-white py-3 rounded-xl font-bold shadow-lg active:scale-95 transition-all">Save Changes</button>
+            <button onclick="document.getElementById('editProfileModal').remove()" class="w-full text-xs font-bold text-slate-400 mt-2">Cancel</button>
+        </div>
+    </div>
+    `;
+            document.body.appendChild(modal);
+        };
+
+        window.submitProfileUpdate = async function () {
+            const newName = document.getElementById('newName').value;
+            const btn = document.getElementById('saveNameBtn');
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+
+            if (!newName) return window.showToast("Name cannot be empty", "error");
+
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> Saving...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        action: "updateProfileData",
+                        email: session.email,
+                        username: newName
+                    })
+                });
+                const result = await res.json();
+                if (result.success) {
+                    window.showToast("Profile Updated!", "success");
+                    session.username = newName;
+                    localStorage.setItem('quanta_session', JSON.stringify(session));
+                    setTimeout(() => location.reload(), 1000);
+                } else {
+                    window.showToast(result.message, "error");
+                    btn.disabled = false;
+                }
+            } catch (err) { window.showToast("Error updating profile", "error"); }
+        };
+
+        // --- 5. CHANGE PASSWORD LOGIC ---
+        window.openChangePassword = function () {
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+            if (!session) return showToast("Please login first", "error");
+
+            const modal = document.createElement('div');
+            modal.id = "passwordChangeModal";
+            modal.className = "fixed inset-0 z-[11000] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm";
+            modal.innerHTML = `
+            <div class="bg-white dark:bg-[#0f172a] w-full max-w-sm rounded-3xl p-8 shadow-2xl animate-fade-in border border-white/10">
+                <div class="text-center mb-6">
+                    <div class="w-12 h-12 bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-lg font-bold dark:text-white">Security Update</h3>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Set a new permanent password</p>
+                </div>
+                <div class="space-y-4">
+                    <input type="password" id="currPass" placeholder="Current (or Temporary) Password" class="w-full px-4 py-3 rounded-xl dark:bg-slate-700 border dark:border-gray-600 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                    <input type="password" id="newPass" placeholder="Enter New Password" class="w-full px-4 py-3 rounded-xl dark:bg-slate-700 border dark:border-gray-600 dark:text-white outline-none focus:ring-2 focus:ring-emerald-500 text-sm">
+                    <button id="updatePassBtn" onclick="submitPasswordChange()" class="w-full bg-emerald-600 text-white py-3 rounded-xl font-bold shadow-lg active:scale-95 transition-all">Save New Password</button>
+                    <button onclick="document.getElementById('passwordChangeModal').remove()" class="w-full text-xs font-bold text-slate-400 py-2">Cancel</button>
+                </div>
+            </div>
+        `;
+            document.body.appendChild(modal);
+        };
+
+        window.submitPasswordChange = function () {
+            const currentPass = document.getElementById('currPass').value;
+            const newPass = document.getElementById('newPass').value;
+            const btn = document.getElementById('updatePassBtn');
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+
+            if (!currentPass || !newPass) return showToast("Fill all fields", "error");
+            if (newPass.length < 5) return showToast("Password is too short", "error");
+
+            btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> UPDATING...';
+            btn.disabled = true;
+
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                body: JSON.stringify({
+                    action: "updatePassword",
+                    email: session.email,
+                    currentPass: currentPass,
+                    newPass: newPass
+                })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.success) {
+                        showToast("Success! Please login with your new password.", "success");
+                        setTimeout(() => logout(), 2000); // Logout to force re-authentication
+                    } else {
+                        showToast(res.message, "error");
+                        btn.innerHTML = "Save New Password";
+                        btn.disabled = false;
+                    }
+                })
+                .catch(() => {
+                    showToast("Update Failed: Server Error", "error");
+                    btn.disabled = false;
+                });
+        };
+
+
+        // --- CHANGE PASSWORD UI ---
+        window.openChangePassword = () => {
+            const modal = document.createElement('div');
+            modal.className = "fixed inset-0 z-[11000] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4";
+            modal.innerHTML = `
+            <div class="bg-white dark:bg-[#0f172a] p-8 rounded-3xl w-full max-w-sm shadow-2xl border border-white/10">
+                <h3 class="text-xl font-bold mb-2 dark:text-white font-serif">Security Settings</h3>
+                <p class="text-xs text-slate-500 mb-6">Change your account password</p>
+                <input type="password" id="oldP" placeholder="Current Password" class="w-full p-4 mb-3 rounded-2xl border dark:bg-slate-800 dark:text-white outline-none">
+                <input type="password" id="newP" placeholder="New Password" class="w-full p-4 mb-6 rounded-2xl border dark:bg-slate-800 dark:text-white outline-none">
+                <button id="upBtn" onclick="submitCP()" class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-blue-600/20 active:scale-95 transition-all">Update Password</button>
+                <button onclick="this.parentElement.parentElement.remove()" class="w-full text-xs mt-4 text-slate-400 font-bold uppercase tracking-widest">Cancel</button>
+            </div>`;
+            document.body.appendChild(modal);
+            window.submitCP = async () => {
+                const session = JSON.parse(localStorage.getItem('quanta_session'));
+                const oldP = document.getElementById('oldP').value;
+                const newP = document.getElementById('newP').value;
+                const btn = document.getElementById('upBtn');
+                btn.innerHTML = '<i class="fas fa-spinner animate-spin"></i> UPDATING...';
+                try {
+                    const res = await fetch(SCRIPT_URL, { method: "POST", body: JSON.stringify({ action: "updatePassword", email: session.email, currentPass: oldP, newPass: newP }) });
+                    const result = await res.json();
+                    if (result.success) {
+                        showToast("Password updated! Log out in 2s...", "success");
+                        setTimeout(() => logout(), 2000);
+                    } else { showToast(result.message, "error"); btn.innerText = "Update Password"; }
+                } catch (e) { showToast("Error", "error"); }
+            };
+        };
 
         document.addEventListener('DOMContentLoaded', () => {
-            loadRequests();
-            loadGallery();
-            loadMediaCarousel(); // Initializing new slider
-            const btn = document.getElementById('mobile-menu-btn');
-            if (btn) btn.onclick = window.toggleMenu;
+            // 1. Preserve existing loaders
+            if (typeof loadGallery === "function") loadGallery();
+            if (typeof loadMediaCarousel === "function") loadMediaCarousel();
 
-            // Audio Animations Trigger
-            const audio = document.getElementById('mainAudio');
-            const audioContainer = document.getElementById('audioContainer');
-            if (audio && audioContainer) {
-                audio.addEventListener('play', () => audioContainer.classList.add('is-playing'));
-                audio.addEventListener('pause', () => audioContainer.classList.remove('is-playing'));
-                audio.addEventListener('ended', () => audioContainer.classList.remove('is-playing'));
+            // 2. Manage User Session
+            const session = JSON.parse(localStorage.getItem('quanta_session'));
+            const loginBtn = document.getElementById('loginBtn'); // Original Desktop Login
+            const profileArea = document.getElementById('userProfileArea'); // Original Desktop Profile
+            const loggedOutMobile = document.getElementById('loggedOutMobile'); // New Mobile buttons
+            const loggedInMobile = document.getElementById('loggedInMobile'); // New Mobile status card
+
+            if (session) {
+                // --- LOGGED IN ---
+                if (loginBtn) loginBtn.classList.add('hidden');
+                if (profileArea) profileArea.classList.remove('hidden');
+                if (loggedOutMobile) loggedOutMobile.classList.add('hidden');
+                if (loggedInMobile) {
+                    loggedInMobile.classList.remove('hidden');
+                    loggedInMobile.classList.add('flex');
+                }
+
+                // Fill all data fields (Navbar, Dropdown, and Mobile Menu)
+                const textData = {
+                    'navUserName': session.username,
+                    'mobileNavName': session.username,
+                    'mobileNavEmail': session.email,
+                    'dropUserEmail': session.email,
+                    'dashWelcomeName': session.username
+                };
+                const imgData = ['navUserImg', 'mobileNavImg', 'dashUserImg'];
+
+                for (const [id, value] of Object.entries(textData)) {
+                    const el = document.getElementById(id);
+                    if (el) el.innerText = value;
+                }
+                imgData.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) el.src = session.profileImg;
+                });
+
+            } else {
+                // --- LOGGED OUT ---
+                if (loginBtn) loginBtn.classList.remove('hidden');
+                if (profileArea) profileArea.classList.add('hidden');
+                if (loggedOutMobile) loggedOutMobile.classList.remove('hidden');
+                if (loggedInMobile) loggedInMobile.classList.add('hidden');
+            }
+
+            const mBtn = document.getElementById('mobile-menu-btn');
+            if (mBtn) mBtn.onclick = window.toggleMenu;
+        });
+
+        // Ensure Dropdown Toggle is separate and functional
+        window.toggleUserDropdown = (e) => {
+            if (e) e.stopPropagation();
+            const dropdown = document.getElementById('userDropdown');
+            if (dropdown) dropdown.classList.toggle('hidden');
+        };
+
+        // --- MOBILE FIX: Close dropdown when clicking outside ---
+        window.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('userDropdown');
+            const profileArea = document.getElementById('userProfileArea');
+            if (dropdown && profileArea && !profileArea.contains(e.target)) {
+                dropdown.classList.add('hidden');
             }
         });
+
+
+
+
+        window.logout = () => { localStorage.removeItem('quanta_session'); location.reload(); };
     </script>
+
+
     <div id="imageLightbox"
         class="fixed inset-0 bg-black/95 backdrop-blur-md z-[300] hidden flex-col items-center justify-center p-4 cursor-zoom-out"
         onclick="this.classList.add('hidden')">
@@ -3600,6 +4105,93 @@
         <img id="lightboxImg" src="" class="lightbox-img shadow-2xl">
         <p class="text-white/50 mt-4 text-xs tracking-widest font-mono uppercase">Click anywhere to close</p>
     </div>
+
+
+
+
+
+    <section id="userDashboard"
+        class="py-20 bg-white dark:bg-[#0f172a] hidden animate-fade-in border-t dark:border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold font-serif dark:text-white">User Dashboard</h2>
+                <p class="text-slate-500">Welcome, <span id="dashWelcomeName"
+                        class="text-blue-600 font-bold">User</span>!</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="glass-card p-8 rounded-3xl text-center border dark:border-gray-700 bg-white dark:bg-slate-900">
+                    <img id="dashUserImg" src=""
+                        class="w-24 h-24 rounded-full mx-auto border-4 border-blue-500 object-cover mb-4">
+                    <h3 id="dashUserName" class="font-bold text-xl dark:text-white">User Name</h3>
+                    <p id="dashUserEmail" class="text-sm text-slate-500 mb-6">user@example.com</p>
+                    <button onclick="window.location.href='service.html'" class="tech-btn w-full !py-3 text-xs">New
+                        Inquiry</button>
+                </div>
+                <div
+                    class="md:col-span-2 glass-card p-8 rounded-3xl border dark:border-gray-700 bg-white dark:bg-slate-900">
+                    <h4 class="font-bold mb-4 flex items-center gap-2 dark:text-white"><i
+                            class="fas fa-history text-blue-500"></i> Activity</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-slate-50 dark:bg-slate-800 rounded-xl">
+                            <span class="text-sm dark:text-gray-300">Status</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/10 text-green-500 rounded-full text-[10px] font-bold uppercase">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="authModal"
+        class="fixed inset-0 bg-black/80 backdrop-blur-md z-[250] hidden flex items-center justify-center px-4">
+        <div
+            class="glass-card bg-white dark:bg-[#0f172a] border border-slate-200 dark:border-gray-700 rounded-3xl p-8 max-w-md w-full shadow-2xl relative">
+            <button onclick="toggleAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-red-500"><i
+                    class="fas fa-times text-xl"></i></button>
+            <div class="flex justify-center gap-6 mb-8 border-b dark:border-gray-700 pb-4">
+                <button id="loginTab" onclick="switchAuth('login')"
+                    class="text-xl font-bold text-blue-600 border-b-2 border-blue-600 pb-2">Login</button>
+                <button id="signupTab" onclick="switchAuth('signup')" class="text-xl font-bold text-slate-400 pb-2">Sign
+                    Up</button>
+            </div>
+            <div id="loginForm" class="space-y-4">
+                <input type="email" id="loginEmail" placeholder="Email"
+                    class="w-full px-4 py-3 rounded-xl dark:bg-slate-800 border dark:border-gray-600 dark:text-white outline-none">
+                <input type="password" id="loginPass" placeholder="Password"
+                    class="w-full px-4 py-3 rounded-xl dark:bg-slate-800 border dark:border-gray-600 dark:text-white outline-none">
+                <button id="loginBtnSubmit" onclick="submitLogin()"
+                    class="w-full bg-blue-600 text-white py-3 rounded-xl font-bold">Access Dashboard</button>
+                <p class="text-center text-sm"><a href="#" onclick="forgotPass()" class="text-blue-500">Forgot
+                        Password?</a></p>
+            </div>
+            <div id="signupForm" class="space-y-4 hidden">
+                <div class="flex flex-col items-center mb-2">
+                    <div class="w-16 h-16 rounded-full border-2 border-dashed border-blue-500 flex items-center justify-center overflow-hidden cursor-pointer"
+                        onclick="document.getElementById('profileInput').click()">
+                        <img id="profilePreview" src="" class="w-full h-full object-cover hidden">
+                        <i id="profileIcon" class="fas fa-camera text-blue-500"></i>
+                    </div>
+                    <input type="file" id="profileInput" accept="image/*" class="hidden"
+                        onchange="previewAuthProfile(this)">
+                </div>
+                <input type="text" id="regName" placeholder="Full Name"
+                    class="w-full px-4 py-2 rounded-xl dark:bg-slate-800 border dark:border-gray-600 dark:text-white">
+                <input type="email" id="regEmail" placeholder="Email"
+                    class="w-full px-4 py-2 rounded-xl dark:bg-slate-800 border dark:border-gray-600 dark:text-white">
+                <input type="password" id="regPass" placeholder="Password" oninput="checkStrength(this.value)"
+                    class="w-full px-4 py-2 rounded-xl dark:bg-slate-800 border dark:border-gray-600 dark:text-white outline-none">
+                <div class="h-1.5 w-full bg-slate-100 dark:bg-slate-700 rounded-full mt-2 overflow-hidden">
+                    <div id="strengthBar" class="h-full w-0 transition-all duration-500"></div>
+                </div>
+                <p id="strengthText" class="text-[10px] font-bold uppercase mt-1 text-slate-400">Security: None</p>
+                <button id="signupBtnSubmit" onclick="submitSignup()"
+                    class="w-full bg-green-600 text-white py-3 rounded-xl font-bold">Create Account</button>
+            </div>
+        </div>
+    </div>
+
 
 </body>
 
