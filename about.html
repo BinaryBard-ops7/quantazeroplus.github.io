@@ -1,34 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="images/logo.png">
     <title>About Us | Quantazeroplus</title>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Cinzel:wght@700&display=swap"
+        rel="stylesheet">
 
     <script>
         tailwind.config = {
-            darkMode: 'class', 
+            darkMode: 'class',
             theme: {
                 extend: {
-                    fontFamily: { 
+                    fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
                         display: ['Poppins', 'sans-serif'],
-                        serif: ['Cinzel', 'serif'], 
+                        serif: ['Cinzel', 'serif'],
                     },
                     colors: {
-                        vermaBlue: '#007bff', 
+                        vermaBlue: '#007bff',
                         vermaRed: '#dc3545',
                         vermaDark: '#1a1a1a',
                         vermaLight: '#f8f9fa',
-                        darkBg: '#020617', 
+                        darkBg: '#020617',
                         darkCard: '#0f172a',
                     },
                     animation: {
@@ -49,52 +52,162 @@
 
     <style>
         /* SCROLLBAR & UTILITIES */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        .dark ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        .dark ::-webkit-scrollbar-thumb { background: #334155; }
-        ::-webkit-scrollbar-thumb:hover { background: #007bff; }
-        
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #334155;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #007bff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* GLASS EFFECTS */
-        .glass { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.3); }
-        .dark .glass { background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .glass {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
 
-        .glass-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.5); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .dark .glass-card { background: rgba(15, 23, 42, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); }
-        .glass-card:hover { transform: translateY(-10px) scale(1.02); background: rgba(255, 255, 255, 0.9); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); }
-        .dark .glass-card:hover { background: rgba(15, 23, 42, 0.6); border-color: rgba(0, 123, 255, 0.3); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 123, 255, 0.2); }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
 
-        .glass-base { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.6); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); transition: all 0.3s ease; }
-        .dark .glass-base { background: rgba(2, 6, 23, 0.7); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5); }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark .glass-card:hover {
+            background: rgba(15, 23, 42, 0.6);
+            border-color: rgba(0, 123, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 123, 255, 0.2);
+        }
+
+        .glass-base {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .dark .glass-base {
+            background: rgba(2, 6, 23, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
 
         /* Gallery */
-        .gallery-container { column-count: 2; column-gap: 1rem; }
-        @media (min-width: 768px) { .gallery-container { column-count: 3; } }
-        @media (min-width: 1024px) { .gallery-container { column-count: 4; } }
-        .gallery-item { break-inside: avoid; margin-bottom: 1rem; position: relative; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); background: #f8fafc; transition: all 0.5s ease; }
-        .dark .gallery-item { background: #1e293b; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3); }
-        .gallery-item:hover { transform: scale(1.02); z-index: 10; }
-        .gallery-item img { width: 100%; height: auto; display: block; }
+        .gallery-container {
+            column-count: 2;
+            column-gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .gallery-container {
+                column-count: 3;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .gallery-container {
+                column-count: 4;
+            }
+        }
+
+        .gallery-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+            position: relative;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #f8fafc;
+            transition: all 0.5s ease;
+        }
+
+        .dark .gallery-item {
+            background: #1e293b;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.02);
+            z-index: 10;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
         /* Navbar & Misc */
-        #navbar.scrolled { width: 85%; top: 20px; border-radius: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        
+        #navbar.scrolled {
+            width: 85%;
+            top: 20px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
         /* YouTube Frame Style */
-        .yt-frame { 
-            border-radius: 1.5rem; 
-            overflow: hidden; 
-            box-shadow: 0 20px 50px -12px rgba(0, 123, 255, 0.25); 
-            border: 1px solid rgba(255,255,255,0.2); 
+        .yt-frame {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 20px 50px -12px rgba(0, 123, 255, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             background: #020617;
             transition: all 0.3s ease;
         }
+
         .yt-frame:hover {
             box-shadow: 0 25px 60px -12px rgba(0, 123, 255, 0.4);
-            border-color: rgba(255,255,255,0.3);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
         /* Timeline Styles */
@@ -107,6 +220,7 @@
             background: linear-gradient(to bottom, transparent, #3b82f6, transparent);
             transform: translateX(-50%);
         }
+
         .timeline-card::before {
             content: '';
             position: absolute;
@@ -115,54 +229,130 @@
             height: 2px;
             background: #3b82f6;
         }
-        .left-card::before { right: -20px; }
-        .right-card::before { left: -20px; }
+
+        .left-card::before {
+            right: -20px;
+        }
+
+        .right-card::before {
+            left: -20px;
+        }
+
+        /* --- AMOLED MODE OVERRIDES --- */
+        .amoled,
+        .amoled body,
+        .amoled header,
+        .amoled main,
+        .amoled section,
+        .amoled footer {
+            background-color: #000000 !important;
+        }
+
+        .amoled .glass,
+        .amoled .glass-card,
+        .amoled .glass-base,
+        .amoled #mobile-menu {
+            background: rgba(10, 10, 10, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px) !important;
+        }
+
+        /* Fix for the scrolled navbar */
+        .amoled #navbar.scrolled .glass {
+            background: rgba(0, 0, 0, 0.95) !important;
+        }
+
+        /* Make timeline markers pop */
+        .amoled .timeline-line {
+            background: linear-gradient(to bottom, transparent, #3b82f6, transparent);
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-scale-in {
+            animation: scaleIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
     </style>
 </head>
-<body class="bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-gray-200 antialiased overflow-x-hidden transition-colors duration-500 min-h-screen flex flex-col">
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] max-w-7xl z-[100] transition-all duration-500" id="navbar">
-        <div class="glass border-2 border-white/30 dark:border-white/10 shadow-2xl rounded-[2rem] px-4 md:px-6 py-3 flex justify-between items-center bg-white/70 dark:bg-slate-900/60 backdrop-blur-2xl">
+<body
+    class="bg-slate-50 dark:bg-[#020617] text-slate-800 dark:text-gray-200 antialiased overflow-x-hidden transition-colors duration-500 min-h-screen flex flex-col">
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] md:w-[85%] max-w-7xl z-[100] transition-all duration-500"
+        id="navbar">
+        <div
+            class="glass border-2 border-white/30 dark:border-white/10 shadow-2xl rounded-[2rem] px-4 md:px-6 py-3 flex justify-between items-center bg-white/70 dark:bg-slate-900/60 backdrop-blur-2xl">
             <a href="index.html" class="flex items-center gap-2 md:gap-4 group">
                 <div class="relative flex-shrink-0 w-10 h-10 md:w-12 md:h-12">
-                    <div class="absolute inset-0 bg-blue-500 blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-xl"></div>
-                    <img src="images/logo.png" alt="Quantazeroplus" class="w-full h-full rounded-xl object-cover relative z-10 group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff&size=128'">
+                    <div
+                        class="absolute inset-0 bg-blue-500 blur-md opacity-20 group-hover:opacity-40 transition-opacity rounded-xl">
+                    </div>
+                    <img src="images/logo.png" alt="Quantazeroplus"
+                        class="w-full h-full rounded-xl object-cover relative z-10 group-hover:scale-110 transition-transform duration-300"
+                        onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff&size=128'">
                 </div>
-                <span class="text-lg md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 dark:group-hover:from-blue-400 dark:group-hover:to-cyan-300 transition-all duration-300 whitespace-nowrap">
+                <span
+                    class="text-lg md:text-2xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 dark:group-hover:from-blue-400 dark:group-hover:to-cyan-300 transition-all duration-300 whitespace-nowrap">
                     Quantazeroplus
                 </span>
             </a>
 
             <div class="hidden md:flex space-x-10 items-center font-medium text-sm">
-                <a href="index.html#home" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Mission</a>
-                <a href="index.html#solution" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Solution</a>
-                <a href="index.html#services" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Work</a>
-                <a href="index.html#contact" class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Contact</a>
-                <a href="about.html" class="text-vermaBlue dark:text-blue-400 font-bold transition relative py-1 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0">About Us</a>
-                
-                <button onclick="toggleTheme()" class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/20 backdrop-blur-md border border-slate-300 dark:border-white/10 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:scale-110 shadow-sm hover:bg-slate-300 dark:hover:bg-white/40">
+                <a href="index.html#home"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Mission</a>
+                <a href="index.html#solution"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Solution</a>
+                <a href="index.html#services"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Work</a>
+                <a href="index.html#contact"
+                    class="text-slate-600 dark:text-gray-300 hover:text-vermaBlue dark:hover:text-white transition">Contact</a>
+                <a href="about.html"
+                    class="text-vermaBlue dark:text-blue-400 font-bold transition relative py-1 after:content-[''] after:absolute after:w-full after:h-0.5 after:bg-vermaBlue dark:after:bg-blue-500 after:bottom-0 after:left-0">About
+                    Us</a>
+
+                <button onclick="toggleTheme()"
+                    class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/20 backdrop-blur-md border border-slate-300 dark:border-white/10 text-slate-600 dark:text-yellow-400 flex items-center justify-center transition hover:scale-110 shadow-sm hover:bg-slate-300 dark:hover:bg-white/40">
                     <i class="fas fa-moon dark:hidden"></i>
                     <i class="fas fa-sun hidden dark:block text-yellow-400"></i>
                 </button>
             </div>
 
             <div class="flex items-center gap-4 md:hidden">
-                <button id="mobile-menu-btn" class="text-2xl text-slate-800 dark:text-white focus:outline-none p-2 active:scale-90 transition-transform">
+                <button id="mobile-menu-btn"
+                    class="text-2xl text-slate-800 dark:text-white focus:outline-none p-2 active:scale-90 transition-transform">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden glass border-2 border-slate-200 dark:border-gray-700 mt-2 mx-auto w-full rounded-2xl shadow-2xl transform origin-top transition-all duration-300 overflow-hidden">
+        <div id="mobile-menu"
+            class="hidden md:hidden glass border-2 border-slate-200 dark:border-gray-700 mt-2 mx-auto w-full rounded-2xl shadow-2xl transform origin-top transition-all duration-300 overflow-hidden">
             <div class="flex flex-col p-4 space-y-3">
-                <a href="index.html#home" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Mission</a>
-                <a href="index.html#solution" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Solution</a>
-                <a href="index.html#services" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Work</a>
-                <a href="index.html#contact" class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Contact</a>
-                <a href="about.html" class="p-3 rounded-lg bg-slate-100 dark:bg-white/10 text-blue-600 dark:text-blue-400 font-bold">About Us</a>
-                
+                <a href="index.html#home"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Mission</a>
+                <a href="index.html#solution"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Solution</a>
+                <a href="index.html#services"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Work</a>
+                <a href="index.html#contact"
+                    class="p-3 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">Contact</a>
+                <a href="about.html"
+                    class="p-3 rounded-lg bg-slate-100 dark:bg-white/10 text-blue-600 dark:text-blue-400 font-bold">About
+                    Us</a>
+
                 <div class="border-t border-slate-200 dark:border-gray-700 pt-3">
-                    <button onclick="toggleTheme()" class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">
+                    <button onclick="toggleTheme()"
+                        class="w-full flex items-center justify-between p-3 rounded-lg bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-gray-200 font-medium">
                         <span>Appearance Mode</span>
                         <span>
                             <i class="fas fa-moon dark:hidden text-slate-500"></i>
@@ -175,16 +365,26 @@
     </nav>
 
     <header class="pt-36 pb-20 px-4 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-slate-50 dark:bg-[#020617] transition-colors duration-500">
-            <div class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-blue-200/40 dark:bg-blue-900/20 rounded-full blur-[120px] animate-blob"></div>
-            <div class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-purple-200/40 dark:bg-indigo-900/20 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
-            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 dark:opacity-20"></div>
+        <div
+            class="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 bg-slate-50 dark:bg-[#020617] transition-colors duration-500">
+            <div
+                class="absolute top-[-20%] right-[-10%] w-[70%] h-[70%] bg-blue-200/40 dark:bg-blue-900/20 rounded-full blur-[120px] animate-blob">
+            </div>
+            <div
+                class="absolute bottom-[-10%] left-[-10%] w-[60%] h-[60%] bg-purple-200/40 dark:bg-indigo-900/20 rounded-full blur-[120px] animate-blob animation-delay-2000">
+            </div>
+            <div
+                class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 dark:opacity-20">
+            </div>
         </div>
-        
+
         <div class="container mx-auto text-center relative z-10 animate-slide-up">
-            <div class="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-widest uppercase">Our Story</div>
+            <div
+                class="inline-block px-4 py-1.5 mb-6 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400 text-xs font-bold tracking-widest uppercase">
+                Our Story</div>
             <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 dark:text-white mb-6 font-serif">
-                About <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:to-cyan-300">Quantazeroplus</span>
+                About <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:to-cyan-300">Quantazeroplus</span>
             </h1>
             <p class="text-lg md:text-xl text-slate-600 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
                 Innovating the digital landscape with affordable, maintenance-free, and high-impact web solutions.
@@ -193,19 +393,27 @@
     </header>
 
     <main class="flex-grow space-y-24 pb-20">
-        
+
         <section class="container mx-auto px-4">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <div class="prose prose-lg dark:prose-invert prose-headings:font-serif prose-a:text-blue-500">
                     <div class="glass-card p-8 rounded-3xl border border-white/20">
                         <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">Our Purpose</h2>
                         <p class="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed">
-                            At <strong>Quantazeroplus</strong>, we believe that a powerful digital presence should be accessible to everyone—from local shopkeepers and bustling restaurants to ambitious students and established enterprises. Our vision is to democratize the web by removing the technical barriers and recurring costs that often hold businesses back. We strive to build a digital ecosystem where quality meets affordability.
+                            At <strong>Quantazeroplus</strong>, we believe that a powerful digital presence should be
+                            accessible to everyone—from local shopkeepers and bustling restaurants to ambitious students
+                            and established enterprises. Our vision is to democratize the web by removing the technical
+                            barriers and recurring costs that often hold businesses back. We strive to build a digital
+                            ecosystem where quality meets affordability.
                         </p>
-                        
+
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Transforming Services</h3>
                         <p class="text-slate-600 dark:text-gray-300 mb-6 leading-relaxed">
-                            We specialize in <strong>semi-dynamic web architecture</strong>. Unlike traditional agencies that charge hefty monthly fees for maintenance, we engineer self-sustaining digital assets. Whether it's a QR-based menu for a hotel that updates instantly, a sleek portfolio for a student, or a robust landing page for a startup, our solutions are designed to be "deploy and forget"—in the best way possible. High performance, zero headache.
+                            We specialize in <strong>semi-dynamic web architecture</strong>. Unlike traditional agencies
+                            that charge hefty monthly fees for maintenance, we engineer self-sustaining digital assets.
+                            Whether it's a QR-based menu for a hotel that updates instantly, a sleek portfolio for a
+                            student, or a robust landing page for a startup, our solutions are designed to be "deploy
+                            and forget"—in the best way possible. High performance, zero headache.
                         </p>
                     </div>
                 </div>
@@ -213,39 +421,46 @@
                 <div class="flex flex-col gap-8 sticky top-24">
                     <div class="flex flex-col gap-4">
                         <div class="yt-frame w-full aspect-video">
-                            <iframe 
-                                class="w-full h-full object-cover"
-                                src="https://www.youtube.com/embed/DzgMkpS2lYk?rel=0" 
-                                title="Quantazeroplus: Web Democratized – The Future of Digital Solutions" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            <iframe class="w-full h-full object-cover"
+                                src="https://www.youtube.com/embed/DzgMkpS2lYk?rel=0"
+                                title="Quantazeroplus: Web Democratized – The Future of Digital Solutions"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                 allowfullscreen>
                             </iframe>
                         </div>
-                        <a href="https://youtube.com/@quantazeroplus?si=uA0VWktGL62YERSb" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-red-600/30">
+                        <a href="https://youtube.com/@quantazeroplus?si=uA0VWktGL62YERSb" target="_blank"
+                            class="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-red-600/30">
                             <i class="fab fa-youtube"></i> Visit Official Channel
                         </a>
                     </div>
 
                     <div class="glass-base p-6 rounded-2xl border border-slate-200 dark:border-gray-700 text-center">
-                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-6 font-serif">Join Our Community</h4>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-6 font-serif">Join Our Community
+                        </h4>
                         <div class="flex justify-center gap-4 flex-wrap">
-                            <a href="https://discord.gg/fJUJds4k3" class="w-10 h-10 rounded-full bg-[#5865F2] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#5865F2] transition-all duration-300">
+                            <a href="https://discord.gg/fJUJds4k3"
+                                class="w-10 h-10 rounded-full bg-[#5865F2] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#5865F2] transition-all duration-300">
                                 <i class="fab fa-discord"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#ec4899] transition-all duration-300">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-400 via-red-500 to-purple-500 text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#ec4899] transition-all duration-300">
                                 <i class="fab fa-instagram"></i>
                             </a>
-                            <a href="https://youtube.com/@quantazeroplus?si=uA0VWktGL62YERSb" target="_blank" class="w-10 h-10 rounded-full bg-[#FF0000] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#FF0000] transition-all duration-300">
+                            <a href="https://youtube.com/@quantazeroplus?si=uA0VWktGL62YERSb" target="_blank"
+                                class="w-10 h-10 rounded-full bg-[#FF0000] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#FF0000] transition-all duration-300">
                                 <i class="fab fa-youtube"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-[#0077b5] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#0077b5] transition-all duration-300">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-[#0077b5] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#0077b5] transition-all duration-300">
                                 <i class="fab fa-linkedin-in"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-[#FF4500] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#FF4500] transition-all duration-300">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-[#FF4500] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#FF4500] transition-all duration-300">
                                 <i class="fab fa-reddit-alien"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-[#0088cc] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#0088cc] transition-all duration-300">
+                            <a href="#"
+                                class="w-10 h-10 rounded-full bg-[#0088cc] text-white flex items-center justify-center text-lg hover:scale-110 hover:shadow-[0_0_15px_#0088cc] transition-all duration-300">
                                 <i class="fab fa-telegram-plane"></i>
                             </a>
                         </div>
@@ -254,93 +469,125 @@
             </div>
         </section>
 
-        <section class="relative py-16 bg-white/50 dark:bg-white/5 backdrop-blur-sm border-y border-slate-200 dark:border-white/5">
+        <section
+            class="relative py-16 bg-white/50 dark:bg-white/5 backdrop-blur-sm border-y border-slate-200 dark:border-white/5">
             <div class="container mx-auto px-4 text-center">
-                <span class="text-blue-500 font-bold tracking-widest text-xs uppercase mb-2 block">Core Philosophy</span>
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-12 font-serif">Our Mission</h2>
-                
+                <span class="text-blue-500 font-bold tracking-widest text-xs uppercase mb-2 block">Core
+                    Philosophy</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-12 font-serif">Our Mission
+                </h2>
+
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                    <div class="glass-card p-8 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-16 h-16 mx-auto bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="glass-card p-8 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-hand-holding-heart"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Empowerment</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-400">Giving every individual the tools to own their digital narrative without technical debt.</p>
+                        <p class="text-sm text-slate-600 dark:text-gray-400">Giving every individual the tools to own
+                            their digital narrative without technical debt.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-16 h-16 mx-auto bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="glass-card p-8 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-rocket"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Innovation</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-400">Constantly evolving our semi-dynamic stack to provide faster, safer web experiences.</p>
+                        <p class="text-sm text-slate-600 dark:text-gray-400">Constantly evolving our semi-dynamic stack
+                            to provide faster, safer web experiences.</p>
                     </div>
-                    <div class="glass-card p-8 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300">
-                        <div class="w-16 h-16 mx-auto bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
+                    <div
+                        class="glass-card p-8 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300">
+                        <div
+                            class="w-16 h-16 mx-auto bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400 rounded-2xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                             <i class="fas fa-users"></i>
                         </div>
                         <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">Community</h3>
-                        <p class="text-sm text-slate-600 dark:text-gray-400">Building a network of digital-first businesses that support and grow together.</p>
+                        <p class="text-sm text-slate-600 dark:text-gray-400">Building a network of digital-first
+                            businesses that support and grow together.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <section class="container mx-auto px-4">
-            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-white mb-16 font-serif">Our Journey</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-slate-900 dark:text-white mb-16 font-serif">Our
+                Journey</h2>
             <div class="relative max-w-4xl mx-auto">
                 <div class="timeline-line hidden md:block"></div>
 
                 <div class="relative md:flex items-center justify-between mb-12 group">
                     <div class="md:w-[45%] mb-4 md:mb-0 timeline-card left-card">
-                        <div class="glass-card p-6 rounded-2xl border-l-4 border-blue-500 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors">
+                        <div
+                            class="glass-card p-6 rounded-2xl border-l-4 border-blue-500 hover:bg-blue-50/50 dark:hover:bg-blue-900/20 transition-colors">
                             <span class="text-blue-500 font-bold text-sm">Late 2023</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Inception</h3>
-                            <p class="text-sm text-slate-600 dark:text-gray-400 mt-2">Quantazeroplus was founded with a single laptop and a vision to disrupt the costly web development market.</p>
+                            <p class="text-sm text-slate-600 dark:text-gray-400 mt-2">Quantazeroplus was founded with a
+                                single laptop and a vision to disrupt the costly web development market.</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block group-hover:scale-150 transition-transform"></div>
+                    <div
+                        class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block group-hover:scale-150 transition-transform">
+                    </div>
                     <div class="md:w-[45%]"></div>
                 </div>
 
                 <div class="relative md:flex items-center justify-between mb-12 group flex-row-reverse">
                     <div class="md:w-[45%] mb-4 md:mb-0 timeline-card right-card">
-                        <div class="glass-card p-6 rounded-2xl border-r-4 border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 transition-colors text-right md:text-left">
+                        <div
+                            class="glass-card p-6 rounded-2xl border-r-4 border-purple-500 hover:bg-purple-50/50 dark:hover:bg-purple-900/20 transition-colors text-right md:text-left">
                             <span class="text-purple-500 font-bold text-sm">Early 2024</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">QR Revolution</h3>
-                            <p class="text-sm text-slate-600 dark:text-gray-400 mt-2">Launched our signature QR Ecosystem for hotels and restaurants, gaining our first 50 major clients.</p>
+                            <p class="text-sm text-slate-600 dark:text-gray-400 mt-2">Launched our signature QR
+                                Ecosystem for hotels and restaurants, gaining our first 50 major clients.</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block group-hover:scale-150 transition-transform"></div>
+                    <div
+                        class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-purple-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block group-hover:scale-150 transition-transform">
+                    </div>
                     <div class="md:w-[45%]"></div>
                 </div>
 
                 <div class="relative md:flex items-center justify-between group">
                     <div class="md:w-[45%] mb-4 md:mb-0 timeline-card left-card">
-                        <div class="glass-card p-6 rounded-2xl border-l-4 border-green-500 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-colors">
+                        <div
+                            class="glass-card p-6 rounded-2xl border-l-4 border-green-500 hover:bg-green-50/50 dark:hover:bg-green-900/20 transition-colors">
                             <span class="text-green-500 font-bold text-sm">Future & Beyond</span>
                             <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1">Global Expansion</h3>
-                            <p class="text-sm text-slate-600 dark:text-gray-400 mt-2">Aiming to empower 10,000+ small businesses globally with AI-integrated semi-dynamic web solutions.</p>
+                            <p class="text-sm text-slate-600 dark:text-gray-400 mt-2">Aiming to empower 10,000+ small
+                                businesses globally with AI-integrated semi-dynamic web solutions.</p>
                         </div>
                     </div>
-                    <div class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block group-hover:scale-150 transition-transform animate-pulse"></div>
+                    <div
+                        class="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-green-500 rounded-full border-4 border-white dark:border-slate-900 shadow-lg hidden md:block group-hover:scale-150 transition-transform animate-pulse">
+                    </div>
                     <div class="md:w-[45%]"></div>
                 </div>
             </div>
         </section>
 
         <section class="container mx-auto px-4">
-            <div class="glass p-8 rounded-3xl bg-gradient-to-r from-blue-900/10 to-purple-900/10 border border-white/10 text-center max-w-4xl mx-auto">
+            <div
+                class="glass p-8 rounded-3xl bg-gradient-to-r from-blue-900/10 to-purple-900/10 border border-white/10 text-center max-w-4xl mx-auto">
                 <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Creating Real Value</h3>
                 <p class="text-slate-600 dark:text-gray-300 leading-relaxed mb-6">
-                    Value isn't just about price; it's about impact. By integrating modern technologies like interactive QR ecosystems and responsive design, we help our clients bridge the physical and digital worlds. We are not just developers; we are your digital partners, committed to ensuring your online identity is as vibrant and professional as your real-world business.
+                    Value isn't just about price; it's about impact. By integrating modern technologies like interactive
+                    QR ecosystems and responsive design, we help our clients bridge the physical and digital worlds. We
+                    are not just developers; we are your digital partners, committed to ensuring your online identity is
+                    as vibrant and professional as your real-world business.
                 </p>
-                <a href="index.html#contact" class="inline-block px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-500/30">Start Your Journey</a>
+                <a href="index.html#contact"
+                    class="inline-block px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all transform hover:-translate-y-1 shadow-lg shadow-blue-500/30">Start
+                    Your Journey</a>
             </div>
         </section>
 
     </main>
 
-    <section id="gallery" class="py-16 bg-slate-50 dark:bg-[#020617] border-t border-slate-200 dark:border-gray-900 transition-colors duration-500">
+    <section id="gallery"
+        class="py-16 bg-slate-50 dark:bg-[#020617] border-t border-slate-200 dark:border-gray-900 transition-colors duration-500">
         <div class="container mx-auto px-4">
             <div class="flex items-center justify-between mb-8">
                 <div>
@@ -351,20 +598,24 @@
                 </div>
             </div>
             <div id="galleryGrid" class="gallery-container">
-                <div class="col-span-full text-center py-10 text-slate-400 dark:text-gray-500 italic">Loading gallery...</div>
+                <div class="col-span-full text-center py-10 text-slate-400 dark:text-gray-500 italic">Loading gallery...
+                </div>
             </div>
         </div>
     </section>
 
-    <footer id="contact" class="bg-slate-900 dark:bg-[#010409] text-gray-400 pt-16 pb-8 border-t border-slate-800 dark:border-gray-900">
+    <footer id="contact"
+        class="bg-slate-900 dark:bg-[#010409] text-gray-400 pt-16 pb-8 border-t border-slate-800 dark:border-gray-900">
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
                 <div>
                     <div class="flex items-center gap-3 mb-6">
-                        <img src="images/logo.png" class="w-10 h-10 rounded-lg shadow-lg" alt="Logo" onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff'">
+                        <img src="images/logo.png" class="w-10 h-10 rounded-lg shadow-lg" alt="Logo"
+                            onerror="this.src='https://ui-avatars.com/api/?name=Q+Z&background=002868&color=fff'">
                         <span class="text-xl font-bold text-white uppercase tracking-tighter">QUANTAZEROPLUS</span>
                     </div>
-                    <p class="text-sm leading-relaxed mb-6">Democratizing the web with affordable, high-impact digital solutions for everyone. Since 2023.</p>
+                    <p class="text-sm leading-relaxed mb-6">Democratizing the web with affordable, high-impact digital
+                        solutions for everyone. Since 2023.</p>
                 </div>
                 <div>
                     <h4 class="text-white font-bold mb-6">Quick Links</h4>
@@ -377,9 +628,12 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Solutions</h4>
                     <ul class="space-y-3 text-sm">
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Shopkeeper Sites</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Hotel QR Portals</li>
-                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Student Web Resumes</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i>
+                            Shopkeeper Sites</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Hotel QR
+                            Portals</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-green-500 text-xs"></i> Student
+                            Web Resumes</li>
                     </ul>
                 </div>
                 <div>
@@ -391,13 +645,16 @@
                         </li>
                         <li>
                             <div class="flex gap-4 mt-4">
-                                <a href="https://wa.me/919341478114" target="_blank" class="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <a href="https://wa.me/919341478114" target="_blank"
+                                    class="w-12 h-12 rounded-xl bg-green-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
                                     <i class="fab fa-whatsapp text-2xl"></i>
                                 </a>
-                                <a href="tel:6201680161" class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <a href="tel:6201680161"
+                                    class="w-12 h-12 rounded-xl bg-blue-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
                                     <i class="fas fa-phone-alt text-xl"></i>
                                 </a>
-                                <a href="mailto:quantazeroplus6022@gmail.com" class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
+                                <a href="mailto:quantazeroplus6022@gmail.com"
+                                    class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-white hover:scale-110 transition-transform">
                                     <i class="fas fa-envelope text-xl"></i>
                                 </a>
                             </div>
@@ -407,7 +664,8 @@
             </div>
             <div class="border-t border-slate-800 dark:border-gray-900 pt-8 text-center text-xs">
                 <p>&copy; 2023-2025 Quantazeroplus. All rights reserved.</p>
-                <button class="mt-4 text-gray-600 hover:text-white transition-opacity opacity-50 cursor-default" title="Admin">
+                <button class="mt-4 text-gray-600 hover:text-white transition-opacity opacity-50 cursor-default"
+                    title="Admin">
                     <i class="fas fa-lock"></i>
                 </button>
             </div>
@@ -415,23 +673,42 @@
     </footer>
 
     <script>
-        // Theme Logic
-        window.toggleTheme = function() {
-            const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        }
+            // 1. THEME AUTO-LOADER (Runs immediately)
+            (function () {
+                const savedTheme = localStorage.getItem('theme');
+                const html = document.documentElement;
+                if (savedTheme === 'dark') {
+                    html.classList.add('dark');
+                    html.classList.remove('amoled');
+                } else if (savedTheme === 'amoled') {
+                    html.classList.add('dark', 'amoled');
+                }
+            })();
 
-        // Nav Scroll
-        window.onscroll = function() {
+        // 2. TRI-STATE THEME TOGGLE (1:Light -> 2:Dark -> 3:AMOLED)
+        window.toggleTheme = function () {
+            const html = document.documentElement;
+            const isAmoled = html.classList.contains('amoled');
+            const isDark = html.classList.contains('dark') && !isAmoled;
+
+            if (!html.classList.contains('dark')) {
+                // Move to Dark
+                html.classList.add('dark');
+                html.classList.remove('amoled');
+                localStorage.setItem('theme', 'dark');
+            } else if (isDark) {
+                // Move to AMOLED
+                html.classList.add('dark', 'amoled');
+                localStorage.setItem('theme', 'amoled');
+            } else {
+                // Move back to Light
+                html.classList.remove('dark', 'amoled');
+                localStorage.setItem('theme', 'light');
+            }
+        };
+
+        // 3. NAVBAR SCROLL LOGIC
+        window.onscroll = function () {
             const nav = document.getElementById('navbar');
             if (nav) {
                 if (window.pageYOffset > 50) nav.classList.add('scrolled');
@@ -439,65 +716,86 @@
             }
         };
 
-        // Mobile Menu
-        window.toggleMenu = function() { 
+        // 4. MOBILE MENU LOGIC
+        window.toggleMenu = function () {
             const menu = document.getElementById('mobile-menu');
-            if (menu) menu.classList.toggle('hidden'); 
-        }
+            if (menu) menu.classList.toggle('hidden');
+        };
 
-        // Gallery Synchronization Logic
+        // 5. GALLERY LOGIC
         const staticImages = [
-            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000', 
+            'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000',
             'https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=1000',
             'https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000',
             'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000'
         ];
 
-        // PASTE YOUR APPS SCRIPT URL HERE (Must match index.html)
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxk3z5jz_AREkLvokLNi0Q45Kg_CP6BZAIpaWbqyq_y0Q_uT1d3yHCR5DvEQwBrMZ72/exec';
 
         async function loadGallery() {
             const grid = document.getElementById('galleryGrid');
             if (!grid) return;
-            
-            // Try fetching from Apps Script first (Sync with Index)
-            if (SCRIPT_URL && SCRIPT_URL !== 'PASTE_YOUR_WEB_APP_URL_HERE') {
-                try {
-                    const response = await fetch(`${SCRIPT_URL}?type=gallery`);
-                    const data = await response.json();
-                    if (data.status === 'success' && data.media.length > 0) {
-                        grid.innerHTML = '';
-                        data.media.reverse().forEach((item, index) => {
-                             const div = document.createElement('div');
-                             div.className = 'gallery-item animate-fade-in';
-                             div.style.animationDelay = `${index * 0.1}s`;
-                             div.innerHTML = `<img src="${item.url}" loading="lazy" alt="Gallery Item">`;
-                             grid.appendChild(div);
-                        });
-                        return; // Exit if successful
-                    }
-                } catch (e) { console.error("Gallery fetch failed", e); }
-            }
 
-            // Fallback to LocalStorage/Static if API fails or empty
-            let gallery = JSON.parse(localStorage.getItem('quantaGallery')) || [];
+            // Function to open the lightbox
+            const openLightbox = (url) => {
+                const modal = document.getElementById('imageLightbox');
+                const img = document.getElementById('lightboxImg');
+                img.src = url;
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling background
+            };
+
+            try {
+                const response = await fetch(`${SCRIPT_URL}?type=gallery`);
+                const data = await response.json();
+                if (data.status === 'success' && data.media.length > 0) {
+                    grid.innerHTML = '';
+                    data.media.reverse().forEach((item) => {
+                        const div = document.createElement('div');
+                        div.className = 'gallery-item animate-fade-in cursor-pointer group';
+                        div.innerHTML = `<img src="${item.url}" loading="lazy" class="transition-transform duration-500 group-hover:scale-105">`;
+
+                        // ADD THIS LINE FOR FULL SCREEN CLICK
+                        div.onclick = () => openLightbox(item.url);
+
+                        grid.appendChild(div);
+                    });
+                    return;
+                }
+            } catch (e) { console.error("Gallery fetch failed", e); }
+
+            // Fallback for static images
             grid.innerHTML = '';
-            
-            // Render Static
-            staticImages.forEach(img => { 
-                grid.innerHTML += `<div class="gallery-item animate-fade-in"><img src="${img}" alt="Portfolio Item" loading="lazy"></div>`; 
-            });
-            // Render LocalStorage
-            gallery.forEach((img) => { 
-                grid.innerHTML += `<div class="gallery-item animate-fade-in"><img src="${img}" loading="lazy"></div>`; 
+            staticImages.forEach(imgUrl => {
+                const div = document.createElement('div');
+                div.className = 'gallery-item animate-fade-in cursor-pointer group';
+                div.innerHTML = `<img src="${imgUrl}" loading="lazy" class="transition-transform duration-500 group-hover:scale-105">`;
+
+                // ADD THIS LINE FOR FULL SCREEN CLICK
+                div.onclick = () => openLightbox(imgUrl);
+
+                grid.appendChild(div);
             });
         }
 
-        document.addEventListener('DOMContentLoaded', () => { 
+        // 6. INITIALIZE
+        document.addEventListener('DOMContentLoaded', () => {
             loadGallery();
             const btn = document.getElementById('mobile-menu-btn');
-            if (btn) btn.onclick = window.toggleMenu; 
+            if (btn) btn.onclick = window.toggleMenu;
         });
     </script>
+    <div id="imageLightbox"
+        class="fixed inset-0 bg-black/95 backdrop-blur-md z-[500] hidden flex-col items-center justify-center p-4 cursor-zoom-out"
+        onclick="this.classList.add('hidden'); document.body.style.overflow='';">
+        <button class="absolute top-6 right-6 text-white text-3xl hover:text-blue-400 transition-colors">
+            <i class="fas fa-times"></i>
+        </button>
+        <img id="lightboxImg" src=""
+            class="max-w-[95%] max-h-[85vh] object-contain rounded-xl shadow-2xl border border-white/10 animate-scale-in">
+        <p class="text-white/50 mt-4 text-xs tracking-widest font-mono uppercase">Click anywhere to close</p>
+    </div>
 </body>
+
 </html>

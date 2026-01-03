@@ -90,6 +90,36 @@
         
         /* QR TOOL */
         #qrCanvas { border-radius: 1rem; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+
+        /* --- AMOLED MODE OVERRIDES --- */
+        .amoled, .amoled body, .amoled header, .amoled main {
+            background-color: #000000 !important;
+        }
+
+        .amoled .glass, 
+        .amoled .glass-card, 
+        .amoled #mobile-menu,
+        .amoled #customDropdown {
+            background: rgba(10, 10, 10, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            backdrop-filter: blur(20px);
+        }
+
+        /* Pure black for the scrolling marquee area */
+        .amoled section.bg-white\/30 {
+            background-color: #000000 !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+        }
+
+        /* Fix for the scrolled navbar */
+        .amoled #navbar.scrolled .glass {
+            background: rgba(0, 0, 0, 0.95) !important;
+        }
+
+        /* Make pattern visible but subtle on pure black */
+        .amoled .bg-qr-pattern {
+            color: #111827;
+        }
     </style>
 </head>
 <body class="bg-slate-50 dark:bg-darkBg text-slate-800 dark:text-gray-200 antialiased overflow-x-hidden transition-colors duration-500 min-h-screen flex flex-col">
@@ -534,16 +564,34 @@
     </footer>
 
     <script>
-        function toggleTheme() {
+      // --- THEME AUTO-LOADER (Runs immediately) ---
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
             const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
+            if (savedTheme === 'dark') {
                 html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
+            } else if (savedTheme === 'amoled') {
+                html.classList.add('dark', 'amoled');
             }
-        }
+        })();
+
+        // --- TRI-STATE TOGGLE ---
+        window.toggleTheme = function () {
+            const html = document.documentElement;
+            const currentTheme = localStorage.getItem('theme') || 'light';
+
+            if (currentTheme === 'light') {
+                html.classList.add('dark');
+                html.classList.remove('amoled');
+                localStorage.setItem('theme', 'dark');
+            } else if (currentTheme === 'dark') {
+                html.classList.add('dark', 'amoled');
+                localStorage.setItem('theme', 'amoled');
+            } else {
+                html.classList.remove('dark', 'amoled');
+                localStorage.setItem('theme', 'light');
+            }
+        };
 
         window.onscroll = function() {
             const nav = document.getElementById('navbar');

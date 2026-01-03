@@ -59,6 +59,8 @@
                         serif: ['Cinzel', 'serif'],
                     },
                     colors: {
+                        amoledBg: '#000000', // Pure black for AMOLED
+                        amoledCard: '#080808', // Slightly lighter for cards
                         vermaBlue: '#007bff',
                         vermaRed: '#dc3545',
                         vermaDark: '#1a1a1a',
@@ -674,6 +676,33 @@
             padding: 8px 20px;
             border-radius: 50px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* --- AMOLED MODE OVERRIDES --- */
+        .amoled,
+        .amoled body,
+        .amoled section {
+            background-color: #000000 !important;
+        }
+
+        .amoled .glass,
+        .amoled .glass-card,
+        .amoled .glass-base,
+        .amoled #mobile-menu,
+        .amoled #userDropdown {
+            background: rgba(8, 8, 8, 0.8) !important;
+            border-color: rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(20px);
+        }
+
+        .amoled #navbar.scrolled .glass {
+            background: rgba(0, 0, 0, 0.9) !important;
+        }
+
+        /* Make text extra crisp in AMOLED */
+        .amoled .text-slate-600,
+        .amoled .text-slate-500 {
+            color: #a1a1aa !important;
         }
     </style>
 </head>
@@ -3680,27 +3709,43 @@
             if (el) el.innerHTML = content;
         }
 
+
+
+        // --- UPDATED TRI-STATE THEME TOGGLE ---
         window.toggleTheme = function () {
             const html = document.documentElement;
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                html.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        }
+            const currentTheme = localStorage.getItem('theme') || 'light';
 
-        window.onscroll = function () {
-            const nav = document.getElementById('navbar');
-            if (nav) {
-                if (window.pageYOffset > 50) nav.classList.add('scrolled');
-                else nav.classList.remove('scrolled');
+            if (currentTheme === 'light') {
+                // Step 1: Light -> Dark
+                html.classList.add('dark');
+                html.classList.remove('amoled');
+                localStorage.setItem('theme', 'dark');
+                if (typeof showToast === 'function') showToast("Dark Mode Active", "success");
+            } else if (currentTheme === 'dark') {
+                // Step 2: Dark -> AMOLED
+                html.classList.add('dark', 'amoled');
+                localStorage.setItem('theme', 'amoled');
+                if (typeof showToast === 'function') showToast("AMOLED Black Active", "success");
+            } else {
+                // Step 3: AMOLED -> Light
+                html.classList.remove('dark', 'amoled');
+                localStorage.setItem('theme', 'light');
+                if (typeof showToast === 'function') showToast("Light Mode Active", "success");
             }
         };
+
+        // --- THEME INITIALIZATION (Run immediately) ---
+        (function () {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            if (savedTheme === 'dark') {
+                html.classList.add('dark');
+            } else if (savedTheme === 'amoled') {
+                html.classList.add('dark', 'amoled');
+            }
+        })();
+
 
         // --- SUBGRID DATA (UNTOUCHED) ---
         const subServiceData = {
@@ -4902,13 +4947,13 @@
                 url: window.location.href
             };
 
-         
+
             if (navigator.share) {
                 navigator.share(shareData)
                     .then(() => showToast("Thanks for sharing!", "success"))
                     .catch((err) => console.log("Share cancelled"));
             }
-  
+
             else {
                 const btnText = btn.querySelector('span');
                 navigator.clipboard.writeText(shareData.url).then(() => {
